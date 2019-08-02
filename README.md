@@ -1,5 +1,5 @@
 # fs3_w8-10_final-project
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 FS3 Cohort final project
 
 ---
@@ -14,6 +14,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/aluis26"><img src="https://avatars3.githubusercontent.com/u/44193260?v=4" width="100px;" alt="aluis26"/><br /><sub><b>aluis26</b></sub></a><br /><a href="https://github.com/CodeOp-tech/fs3_w8-10_final-project/commits?author=aluis26" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/fsdmaster"><img src="https://avatars2.githubusercontent.com/u/27401983?v=4" width="100px;" alt="fsdmaster"/><br /><sub><b>fsdmaster</b></sub></a><br /><a href="https://github.com/CodeOp-tech/fs3_w8-10_final-project/commits?author=fsdmaster" title="Documentation">📖</a></td>
   </tr>
 </table>
 

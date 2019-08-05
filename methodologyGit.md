@@ -15,9 +15,13 @@ Now, the project is linked to two remotes, your fork and the original upstream:
 
 ## Step 3
 
-Work in your fork and commit the changes to it. When having something enough relevant to push into the upstream repository follow the next steps:
+Work in your fork and commit the changes in your local. When having something enough relevant to push into the upstream repository follow the next steps:
 
-1.Pull the state of the upstream repostory stagging branch and merge with your changes in your local:  
+1.Pull the state of the upstream repository stagging branch and merge with your changes in your local with the command: git pull --rebase upStream branch. This will automatically merge the state into your local.  
+![git](./images/images-readme-github/rebase.PNG)
+ 
 2.Push the merged state into your fork:  
+![git](./images/images-readme-github/push.PNG)
+
 3.Request a pull from to the upstream repository and wait for the approval to merge your contribution into the upstream stagging branch:  
 

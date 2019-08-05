@@ -3,7 +3,7 @@
 ## Step 1
 
 Fork the original project into your local repo and clone the document in your local.
-![gitclone](./images/images-readme-github/git-clone.PNG)
+![gitclone](./screenshots/git-clone.PNG)
 
 ## Step 2
 

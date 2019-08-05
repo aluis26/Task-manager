@@ -1,5 +1,9 @@
 # fs3_w8-10_final-project
+<<<<<<< HEAD
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+=======
+
+>>>>>>> add user flow diagram
 FS3 Cohort final project
 
 ---

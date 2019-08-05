@@ -17,7 +17,7 @@ Now, the project is linked to two remotes, your fork and the original upstream:
 
 Work in your fork and commit the changes to it. When having something enough relevant to push into the upstream repository follow the next steps:
 
-1.Pull the state of the upstream repostory stagging branch and merge with your changes in your local:
-2.Push the merged state into your fork:
-3.Request a pull from to the upstream repository and wait for the approval to merge your contribution into the upstream stagging branch:
+1.Pull the state of the upstream repostory stagging branch and merge with your changes in your local:  
+2.Push the merged state into your fork:  
+3.Request a pull from to the upstream repository and wait for the approval to merge your contribution into the upstream stagging branch:  
 

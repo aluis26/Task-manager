@@ -1,6 +1,6 @@
 ## User Flow Diagram
 
-![User Flow Diagram](userflow.png)
+![User Flow Diagram](./screenshots/userflow.png)
 
 ## Description of use case
 

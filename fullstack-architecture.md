@@ -1,7 +1,7 @@
 # FullStack Architecture
 
 The architecture of the app will be composed by the following elements:
-![architecture](./images/graph-architecture.png)
+![architecture](./screenshots/graph-architecture.png)
 
 ## Front End
 
@@ -22,5 +22,5 @@ In the second part we are planning to make the connection through the back end a
 
 
 **Second Phase for API**
-![architecture2](./images/graph-architecture-v.2.png)
+![architecture2](./screenshots/graph-architecture-v.2.png)
 

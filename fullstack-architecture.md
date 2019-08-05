@@ -1,7 +1,7 @@
 # FullStack Architecture
 
 The architecture of the app will be composed by the following elements:
-![architecture](./images/graph-architecture.PNG)
+![architecture](./images/graph-architecture.png)
 
 ## Front End
 

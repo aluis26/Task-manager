@@ -10,12 +10,17 @@ export default class Login extends Component {
           inputEmail: '',
           inputPassword: '',
         };
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChangeEmail = this.handleChangeEmail.bind(this)
+        this.handleChangePassword = this.handleChangePassword.bind(this)
     };
 
-    handleChange(event) {
-        this.setState({ inputEmail: event.target.value, inputPassword: event.target.value})
-        console.log(event.target.value)
+    handleChangeEmail(event) {
+        this.setState({inputEmail: event.target.value})
+        console.log('email-', event.target.value)
+    }
+    handleChangePassword(event) {
+        this.setState({inputPassword: event.target.value})
+        console.log('password-', event.target.value)
     }
 
 
@@ -25,14 +30,14 @@ export default class Login extends Component {
                 <Form className="form">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control name="email" type="email" placeholder="Enter email" onChange={event => this.handleChange(event)} />
+                        <Form.Control name="email" type="email" placeholder="Enter email" onChange={event => this.handleChangeEmail(event)} />
                         <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                         </Form.Text>
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control name="password" type="password" placeholder="Password" onChange={event => this.handleChange( event)} />
+                        <Form.Control name="password" type="password" placeholder="Password" onChange={event => this.handleChangePassword(event)} />
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit

@@ -1,12 +1,14 @@
-# Database: Momemntum
+# Database: Momentum
 
-## Datavase Objects Report
+Database of Momentum contain two tables Users and Todos.
+
+## Database Objects Report
 
 ## Table Details Report
 
 ### Table: Users
 
-Users table contain details of each users which need to be registered, such as ID, email, password and userName. Each details includes system types and description.
+Users table contain details of each users which need to be registered, such as ID, email, password and userName. Each details includes system types, nullable type and description.
 
 | Index | Name     | System Type | Nullable | Description                       |
 | ----- | -------- | ----------- | -------- | --------------------------------- |
@@ -15,7 +17,9 @@ Users table contain details of each users which need to be registered, such as I
 | 3     | password | string      | required | password type record of each user |
 | 4     | userName | text        | required | mame type record of each user     |
 
-### Todos table
+### Table: Todos
+
+Todos table contain details of each todo task which is created by users. Every todo task includes by default ID, todo tas as a text, date when it was creared, status of todo task such as 'done', 'not done' or 'in progress'. The todo task also contains priority status which has statuses 'important', 'urgent', 'regular' etc. Each todo task includes the id of user who created that specific todo task.
 
 | Index | Name     | System Type | Nullable     | Description                                                     |
 | ----- | -------- | ----------- | ------------ | --------------------------------------------------------------- |
@@ -26,13 +30,19 @@ Users table contain details of each users which need to be registered, such as I
 | 5     | priority | integer     | not required | priority of each todo task such as important, urgent or regular |
 | 6     | user_id  | integer     | required     | each todo task has an id of user who created that todo task     |
 
-#### Constraints of Todos
+### Constraints of Todos
+
+The constraint of Todos table is connection of each todo task with user's id from Users table.
 
 | Constraint Type | Constraint Name | Constraint Keys   | Description                                           |
 | --------------- | --------------- | ----------------- | ----------------------------------------------------- |
 | foreign key     | user_id         | id of Users table | each todo task of Todos table connects with user'd id |
 
 ## View Details Report
+
+In the table Users five columns, they are index, name, system type, nullable, and description. Index columns shows row's index; name given as a details of user; system type gives an information of types of each details, as index given as integer, email and password provided as a string; nullable collumn tells if that property is required or not. Also, in both of the tables is column description, where indicated the description of each row.
+
+In the table Todos five columns as well, they are index, name, system type, nullable, and description.
 
 ## Stored Procedure Details Report
 

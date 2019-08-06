@@ -40,9 +40,7 @@ The constraint of Todos table is connection of each todo task with user's id fro
 
 ## View Details Report
 
-In the table Users five columns, they are index, name, system type, nullable, and description. Index columns shows row's index; name given as a details of user; system type gives an information of types of each details, as index given as integer, email and password provided as a string; nullable collumn tells if that property is required or not. Also, in both of the tables is column description, where indicated the description of each row.
-
-In the table Todos five columns as well, they are index, name, system type, nullable, and description.
+In the tables Users and Todos are five columns, they are index, name, system type, nullable, and description. Index columns shows row's index; name given as a details of user; system type gives an information of types of each property/row, as index given as integer, email and password provided as a string, and in todos table there are rext of todo task, date and etc has their specific system types; nullable collumn tells if that property is required or not. Also, in both of the tables is column description, where indicated the description of each row.
 
 ## Stored Procedure Details Report
 

@@ -6,7 +6,7 @@
 
 ## 1. Sign up
 
-The unregister user signs up to acces to functionalities.  
+The unregister user register to access the app.  
 **Requirements:**
 
 Username  

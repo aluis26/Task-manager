@@ -220,21 +220,23 @@ Work in your fork and commit the changes in your local. When having something en
 
 ### Dependencies
 
-- Run `npm install` in project directory. This will install server's project dependencies such as `express`.
-- `cd client` and run `npm install`. This will install client dependencies (React).
+- Run `yarn install` in project directory. This will install server's project dependencies such as `express`.
+- `cd client` and run `yarn install`. This will install client dependencies (React).
 
 ### Development
 
-- Run `npm start` in project directory to start the Express server on port 5000
-- `cd client` and run `npm start` to start client server in development mode with hot reloading in port 3000.
-- Client is configured so all API calls will be proxied to port 5000 for a smoother development experience. Yay!
+- Run `yarn start` in project directory to start the Express server on port 5000
+- `cd client` and run `yarn start` to start client server in development mode with hot reloading in port 3000.
+- Client is configured so all API calls will be proxied to port 5000 for a smoother development experience. Yay! (thanks to the `proxy` attribute in `client/package.json` file.)
 - You can test your client app in `http://localhost:3000`
 - You can test your API in `http://localhost:5000/api`
 - If you access `http://localhost:5000` without running a client build first, you will be prompted with an error: Express is trying to serve you the `/client/build/index.html` file, but it hasn't been generated yet.
+- if you just want to run the client, you can run `yarn start:client`
 
 ### Run Your Build
 
 - `cd client` and run `npm run build`. This will execute `react-build` and create your production build into your `/client/build` directory.
+- if you want just to build the client locally, you can execute `yarn build:client`
 
 ### Deploy to Heroku
 

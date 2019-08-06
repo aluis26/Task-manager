@@ -1,8 +1,10 @@
 # fs3_w8-10_final-project
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 FS3 Cohort final project
 
 ---
+
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
 
 ## Contributors ✨

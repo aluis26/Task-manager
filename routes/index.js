@@ -2,13 +2,21 @@ var express = require("express");
 var router = express.Router();
 var jwt = require("jsonwebtoken");
 var fakeUsers = require("./fakeusers.js");
-const db = require("./../model/helper");
+const mysql = require("mysql");
+
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "user",
+  password: "password",
+  database: "database name"
+});
+connection.connect(err => {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  // res.json(
-  //   "This is the API home route. If you read this means the API connection is working!"
-  // );
   res.send(fakeUsers);
 });
 
@@ -20,10 +28,10 @@ router.post("/login", function(req, res, next) {
   // find the user
 
   var user = fakeUsers.filter(function(e) {
-    e.userName == name;
+    return e.userName == name;
   });
-  res.send(user);
-  if (!user) {
+
+  if (!user[0]) {
     res.status(404).send("User does not exist");
   } else {
     // check if password matches
@@ -35,14 +43,15 @@ router.post("/login", function(req, res, next) {
         {
           userId: user[0].id
         },
-        superSecret,
-        {
-          expiresInMinutes: 1440 // expires in 24 hours
-        }
+        superSecret
+        // {
+        //   expiresInMinutes: 1440 // expires in 24 hours
+        // }
       );
       // return the information including token as JSON
-      res.json({
-        token: token
+      return res.json({
+        token: token,
+        message: "worked"
       });
     }
   }

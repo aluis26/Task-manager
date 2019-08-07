@@ -1,10 +1,12 @@
 {
-  "name": "react-express-mysql-heroku",
-  "version": "0.0.0",
+  "name": "momentum_fs3-final-project",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start:client": "cd client && yarn start",
+    "build:client": "cd client && yarn build",
+    "heroku-postbuild": "cd client && yarn install && yarn build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

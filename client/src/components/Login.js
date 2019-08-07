@@ -38,6 +38,9 @@ export default class Login extends Component {
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control name="password" type="password" placeholder="Password" onChange={event => this.handleChangePassword(event)} />
+                        {/* <Form.Link className="text-muted">
+                        Forgot Password?
+                        </Form.Link> */}
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit

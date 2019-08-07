@@ -4,7 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-const mysql = require("mysql");
 
 var apiRouter = require("./routes/api");
 
@@ -40,17 +39,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
-});
-
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "user",
-  password: "password",
-  database: "database name"
-});
-connection.connect(err => {
-  if (err) throw err;
-  console.log("Connected!");
 });
 
 module.exports = app;

@@ -2,18 +2,7 @@ var express = require("express");
 var router = express.Router();
 var jwt = require("jsonwebtoken");
 var fakeUsers = require("./fakeusers.js");
-const mysql = require("mysql");
-
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "user",
-  password: "password",
-  database: "database name"
-});
-connection.connect(err => {
-  if (err) throw err;
-  console.log("Connected!");
-});
+var db = require("..model/helper");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
@@ -26,35 +15,38 @@ router.post("/login", function(req, res, next) {
   var name = req.body.userName;
   var password = req.body.userPassword;
   // find the user
-
-  var user = fakeUsers.filter(function(e) {
-    return e.userName == name;
+  db("SELECT * FROM user WHERE userName = (" + name + ") ;").then(result => {
+    res.send(result);
   });
 
-  if (!user[0]) {
-    res.status(404).send("User does not exist");
-  } else {
-    // check if password matches
-    if (user[0].userPassword !== password) {
-      res.status(404).send("Wrong password");
-    } else {
-      //if password is right and user is right, generate a token
-      var token = jwt.sign(
-        {
-          userId: user[0].id
-        },
-        superSecret
-        // {
-        //   expiresInMinutes: 1440 // expires in 24 hours
-        // }
-      );
-      // return the information including token as JSON
-      return res.json({
-        token: token,
-        message: "worked"
-      });
-    }
-  }
+  // var user = fakeUsers.filter(function(e) {
+  //   return e.userName == name;
+  // });
+
+  // if (!user[0]) {
+  //   res.status(404).send("User does not exist");
+  // } else {
+  //   // check if password matches
+  //   if (user[0].userPassword !== password) {
+  //     res.status(404).send("Wrong password");
+  //   } else {
+  //     //if password is right and user is right, generate a token
+  //     var token = jwt.sign(
+  //       {
+  //         userId: user[0].id
+  //       },
+  //       superSecret
+  //       // {
+  //       //   expiresInMinutes: 1440 // expires in 24 hours
+  //       // }
+  //     );
+  //     // return the information including token as JSON
+  //     return res.json({
+  //       token: token,
+  //       message: "worked"
+  //     });
+  //   }
+  // }
 });
 
 // if user is found and password is right

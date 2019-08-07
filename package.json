@@ -19,5 +19,19 @@
     "morgan": "~1.9.1",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.1"
-  }
+  },
+  "description": "[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)\r FS3 Cohort final project",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aluis26/fs3_w8-10_final-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aluis26/fs3_w8-10_final-project/issues"
+  },
+  "homepage": "https://github.com/aluis26/fs3_w8-10_final-project#readme"
 }

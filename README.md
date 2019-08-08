@@ -136,18 +136,18 @@ Database of Momentum contain two tables Users and Todos.
 
 ### Table Details Report
 
-#### Table: Users
+#### Table: users
 
 Users table contain details of each users which need to be registered, such as ID, email, password and userName. Each details includes system types, nullable type and description.
 
-| Index | Name     | System Type | Nullable | Description                       |
-| ----- | -------- | ----------- | -------- | --------------------------------- |
-| 1     | id       | integer     | required | primary key for users             |
-| 2     | email    | string      | required | email type record of each user    |
-| 3     | password | string      | required | password type record of each user |
-| 4     | userName | text        | required | mame type record of each user     |
+| Index | Name         | System Type | Nullable | Description                       |
+| ----- | ------------ | ----------- | -------- | --------------------------------- |
+| 1     | id           | integer     | required | primary key for users             |
+| 2     | userEmail    | string      | required | email type record of each user    |
+| 3     | userPassword | string      | required | password type record of each user |
+| 4     | userName     | text        | required | mame type record of each user     |
 
-#### Table: Todos
+#### Table: todos
 
 Todos table contain details of each todo task which is created by users. Every todo task includes by default ID, todo tas as a text, date when it was creared, status of todo task such as 'done', 'not done' or 'in progress'. The todo task also contains priority status which has statuses 'important', 'urgent', 'regular' etc. Each todo task includes the id of user who created that specific todo task.
 

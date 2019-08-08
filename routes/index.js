@@ -1,12 +1,12 @@
 var express = require("express");
 var router = express.Router();
 var jwt = require("jsonwebtoken");
-var fakeUsers = require("./fakeusers.js");
-var db = require("..model/helper");
+// var fakeUsers = require("./fakeusers.js");
+var db = require("../model/helper");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.send(fakeUsers);
+  db("SELECT * FROM users;").then(results => res.send(results));
 });
 
 var superSecret = "costabrava";
@@ -17,25 +17,25 @@ router.post("/login", function(req, res, next) {
   var password = req.body.userPassword;
 
   // find the user
-  db("SELECT * FROM user WHERE userName = (" + name + ") ;").then(
+  db("SELECT * FROM users WHERE userName = ('" + name + "') ;").then(
     resultUser => {
-      if (resultUser != name) {
-        es.status(404).send("User does not exist");
+      if (resultUser.data[0].userName != name) {
+        res.status(404).send("User does not exist");
 
         // if the user exists check the password
       } else {
         db(
-          "SELECT userPassword FROM user WHERE userName = (" + name + ");"
+          "SELECT userPassword FROM users WHERE userName = ('" + name + "');"
         ).then(resultPassword => {
-          if (resultPassword != password) {
-            es.status(404).send("Wrong password");
+          if (resultPassword.data[0].userPassword != password) {
+            res.status(404).send("Wrong password");
 
             // if password is also correct generate and send a token.
           } else {
             var token = jwt.sign(
               {
                 userId: db(
-                  "SELECT id FROM user WHERE userName = (" + name + ");"
+                  "SELECT id FROM users WHERE userName = ('" + name + "');"
                 )
               },
               superSecret

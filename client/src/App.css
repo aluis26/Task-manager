@@ -31,10 +31,11 @@
     transform: rotate(360deg);
   }
 }
-/*Login Form*/
+/*Login and Signup Form*/
 
-.form{
-  width:30%;
+.form,
+.signup-form {
+  width: 30%;
   margin: auto;
-  margin-top: 30vh;
+  margin-top: 20vh;
 }

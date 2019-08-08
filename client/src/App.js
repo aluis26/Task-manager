@@ -1,46 +1,50 @@
-import React, { Component } from 'react';
-import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import { Switch, Route } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './components/Login';
-import Home from './components/Home';
-import Signup from './components/Signup';
-import NavigationBar from './components/NavigationBar';
+import React, { Component } from "react";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./components/Login";
+import Home from "./components/Home";
+import Signup from "./components/Signup";
+import NavigationBar from "./components/NavigationBar";
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      userEmail: "",
+      userPassword: "",
+      isValidated: false
+    };
   }
- 
-  passInputEmail(e) {
-    this.setState({
-      inputEmail: e.target.value
-    })
-  }  
 
-  passInputPassword(e){
+  passInputUserEmail(e) {
     this.setState({
-      inputPassword: e.target.value
-    })
+      inputUserEmail: e.target.value
+    });
+  }
+
+  passInputUserPassword(e) {
+    this.setState({
+      inputUserPassword: e.target.value
+    });
   }
 
   componentDidMount() {
-    this.fetchApi()
+    this.fetchApi();
   }
 
   fetchApi = async () => {
-    const response = await fetch(`/api`)
-    const results = await response.json()
-    this.setState({ results })
-  }
+    const response = await fetch(`/api`);
+    const results = await response.json();
+    this.setState({ results });
+  };
   render() {
     return (
       <div className="App">
         <BrowserRouter>
-        <NavigationBar />
+          <NavigationBar />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/dashboard" component={Dashboard} />
@@ -48,12 +52,9 @@ class App extends Component {
             <Route path="/signup" component={Signup} />
           </Switch>
         </BrowserRouter>
-        
-
-        
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

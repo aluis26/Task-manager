@@ -1,10 +1,13 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 //if we need to use MySQL connection:
-const db = require("../model/helper");
+//const db = require("../model/helper");
+const userShouldBeLoggedIn = require("./guards/userShouldBeLoggedIn");
+
+router.use(userShouldBeLoggedIn);
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get("/", function(req, res, next) {
   // sample MySQL query
   // db("SELECT * FROM users ORDER BY id ASC;")
   //   .then(results => {
@@ -15,7 +18,9 @@ router.get('/', function(req, res, next) {
   //     // Add your code here
   //
   //   });
-  res.json('respond with a resource');
+  res.json(
+    "if you read this it means the token worked and you passed the guard!"
+  );
 });
 
 module.exports = router;

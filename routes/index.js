@@ -12,42 +12,80 @@ router.get("/", function(req, res, next) {
 var superSecret = "costabrava";
 // route for authenticating users:
 router.post("/login", function(req, res, next) {
+  // store the inputs in variables easy to use:
   var name = req.body.userName;
   var password = req.body.userPassword;
+
   // find the user
-  db("SELECT * FROM user WHERE userName = (" + name + ") ;").then(result => {
-    res.send(result);
-  });
+  db("SELECT * FROM user WHERE userName = (" + name + ") ;").then(
+    resultUser => {
+      if (resultUser != name) {
+        es.status(404).send("User does not exist");
 
-  // var user = fakeUsers.filter(function(e) {
-  //   return e.userName == name;
-  // });
+        // if the user exists check the password
+      } else {
+        db(
+          "SELECT userPassword FROM user WHERE userName = (" + name + ");"
+        ).then(resultPassword => {
+          if (resultPassword != password) {
+            es.status(404).send("Wrong password");
 
-  // if (!user[0]) {
-  //   res.status(404).send("User does not exist");
-  // } else {
-  //   // check if password matches
-  //   if (user[0].userPassword !== password) {
-  //     res.status(404).send("Wrong password");
-  //   } else {
-  //     //if password is right and user is right, generate a token
-  //     var token = jwt.sign(
-  //       {
-  //         userId: user[0].id
-  //       },
-  //       superSecret
-  //       // {
-  //       //   expiresInMinutes: 1440 // expires in 24 hours
-  //       // }
-  //     );
-  //     // return the information including token as JSON
-  //     return res.json({
-  //       token: token,
-  //       message: "worked"
-  //     });
-  //   }
-  // }
+            // if password is also correct generate and send a token.
+          } else {
+            var token = jwt.sign(
+              {
+                userId: db(
+                  "SELECT id FROM user WHERE userName = (" + name + ");"
+                )
+              },
+              superSecret
+              // {
+              //   expiresInMinutes: 1440 // expires in 24 hours
+              // }
+            );
+            // return the information including token as JSON
+            return res.json({
+              token: token,
+              message: "worked"
+            });
+          }
+        });
+      }
+    }
+  );
 });
+
+// THIS CODE WORKS WITH DUMMY DATA
+
+// var user = fakeUsers.filter(function(e) {
+//   return e.userName == name;
+// });
+
+// if (!user[0]) {
+//   res.status(404).send("User does not exist");
+// } else {
+//   // check if password matches
+//   if (user[0].userPassword !== password) {
+//     res.status(404).send("Wrong password");
+//   } else {
+//     //if password is right and user is right, generate a token
+//     var token = jwt.sign(
+//       {
+//         userId: user[0].id
+//       },
+//       superSecret
+//       // {
+//       //   expiresInMinutes: 1440 // expires in 24 hours
+//       // }
+//     );
+//     // return the information including token as JSON
+//     return res.json({
+//       token: token,
+//       message: "worked"
+//     });
+//   }
+// }
+// )}
 
 // if user is found and password is right
 // create a token

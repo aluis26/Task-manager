@@ -90,10 +90,10 @@ The back end part will be built in Node. The server will be allocated in Heroku 
 
 ### Complementary API
 
-At least two other APIs from 3rd parties will be used in this application.
--Wheater information from the localization through Open Wheather map API (https://openweathermap.org)
--Quotes through the open API of They Said So. (https://theysaidso.com)
-In the first phase of the project, the front end part will connect directly with them.
+At least two other APIs from 3rd parties will be used in this application.  
+-Wheater information from the localization through Open Wheather map API (https://openweathermap.org)  
+-Quotes through the open API of They Said So. (https://theysaidso.com)  
+In the first phase of the project, the front end part will connect directly with them.  
 In the second part we are planning to make the connection through the back end and maybe store some of the data coming from this APIs:
 
 **Second Phase for API**
@@ -101,18 +101,18 @@ In the second part we are planning to make the connection through the back end a
 
 ## API Routes Plan
 
-| URI                                                    | HTTP Method | Description                                     | Request Object                                                                                           | Response Object                                                                                                                                                       | Required Parameters                                                  |
-|--------------------------------------------------------|-------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| /api/v1/users/:userID/todosParameters: date and status | GET         | Get a specific user’s todos, status or due date | n/a                                                                                                      | {    todos: [        {            id: string            text: string            dueDate: date             priority: integer            status: integer        }    ]} |                                                                      |
-| /api/v1/users/:userID/todos                            | POST        | Add a new todo to list                          | {    text: string    dueDate: date    priority: integer}                                                 | {     id: string}                                                                                                                                                     | { text: string }                                                     |
-| /api/v1/users/:userID/todos/:id                        | PUT         | Edit a specific todo item                       | {    text: string    dueDate: date    priority: integer}                                                 | {    id: string    text: string    dueDate: date    priority: integer}                                                                                                |                                                                      |
-| /api/v1/users/:userID/todos/:id                        | DELETE      | Delete a specific todo item                     | n/a                                                                                                      | {}                                                                                                                                                                    |                                                                      |
-| /api/v1/login                                          | POST        | Login to a user's account                       | {    userName: string    userEmail: string    userPassword: string }                                     | {    accessToken: string}                                                                                                                                             | {    userEmail: string    userPassword: string }                     |
-| /api/v1/signup                                         | POST        | Create a new user                               | {    userName: string    userEmail: string    userPassword: string }                                     | {    accessToken: string}                                                                                                                                             | {    userName: string    userEmail: string    userPassword: string } |
-| /api/v1/users/                                         | PUT         | Edit account details of a specific user         | Header = authorization “accessToken”{    userName: string    userEmail: string    userPassword: string } | {    userName: string    userEmail: string    userPassword: string }                                                                                                  |                                                                      |
-| /api/v1/users/passwordchange                           | PUT         | Change a specific user's password               | Header = authorization “accessToken”{    userEmail: string    oldUserPassword: string }                  | {    userEmail: string    oldUserPassword: string     newUserPassword: string    confirmNewUserPassword: string}                                                      | {    userEmail: string    oldUserPassword: string }                  |
-| /api/v1/users/passwordreset                            | PUT         | Reset a specific user's password                | Header = authorization “accessToken”{    userEmail: string }                                             | {    userEmail: string     newUserPassword: string    confirmNewUserPassword: string}                                                                                 | {    userEmail: string    oldUserPassword: string }                  |
-| /api/v1/users/                                         | DELETE      | Delete a specific user                          | Header = authorization “accessToken”                                                                     | {}                                                                                                                                                                    |                                                                      |
+| URI                                      | HTTP Method | Description                                     | Request Object                                                                                  | Response Object                                                                                     | Required Parameters                                         |
+| ---------------------------------------- | ----------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| /api/v1/todosParameters: date and status | GET         | Get a specific user’s todos, status or due date | n/a                                                                                             | { todos: [ { id: string text: string dueDate: date priority: integer status: integer } ]}           |                                                             |
+| /api/v1/todos                            | POST        | Add a new todo to list                          | { text: string dueDate: date priority: integer}                                                 | { id: string}                                                                                       | { text: string }                                            |
+| /api/v1/todos/:id                        | PUT         | Edit a specific todo item                       | { text: string dueDate: date priority: integer}                                                 | { id: string text: string dueDate: date priority: integer}                                          |                                                             |
+| /api/v1/todos/:id                        | DELETE      | Delete a specific todo item                     | n/a                                                                                             | {}                                                                                                  |                                                             |
+| /api/v1/login                            | POST        | Login to a user's account                       | { userName: string userEmail: string userPassword: string }                                     | { accessToken: string}                                                                              | { userEmail: string userPassword: string }                  |
+| /api/v1/signup                           | POST        | Create a new user                               | { userName: string userEmail: string userPassword: string }                                     | { accessToken: string}                                                                              | { userName: string userEmail: string userPassword: string } |
+| /api/v1/users/                           | PUT         | Edit account details of a specific user         | Header = authorization “accessToken”{ userName: string userEmail: string userPassword: string } | { userName: string userEmail: string userPassword: string }                                         |                                                             |
+| /api/v1/users/passwordchange             | PUT         | Change a specific user's password               | Header = authorization “accessToken”{ userEmail: string oldUserPassword: string }               | { userEmail: string oldUserPassword: string newUserPassword: string confirmNewUserPassword: string} | { userEmail: string oldUserPassword: string }               |
+| /api/v1/users/passwordreset              | PUT         | Reset a specific user's password                | Header = authorization “accessToken”{ userEmail: string }                                       | { userEmail: string newUserPassword: string confirmNewUserPassword: string}                         | { userEmail: string oldUserPassword: string }               |
+| /api/v1/users/                           | DELETE      | Delete a specific user                          | Header = authorization “accessToken”                                                            | {}                                                                                                  |                                                             |
 
 ### Explaining the Routes
 
@@ -136,18 +136,18 @@ Database of Momentum contain two tables Users and Todos.
 
 ### Table Details Report
 
-#### Table: Users
+#### Table: users
 
 Users table contain details of each users which need to be registered, such as ID, email, password and userName. Each details includes system types, nullable type and description.
 
-| Index | Name     | System Type | Nullable | Description                       |
-| ----- | -------- | ----------- | -------- | --------------------------------- |
-| 1     | id       | integer     | required | primary key for users             |
-| 2     | email    | string      | required | email type record of each user    |
-| 3     | password | string      | required | password type record of each user |
-| 4     | userName | text        | required | mame type record of each user     |
+| Index | Name         | System Type | Nullable | Description                       |
+| ----- | ------------ | ----------- | -------- | --------------------------------- |
+| 1     | id           | integer     | required | primary key for users             |
+| 2     | userEmail    | string      | required | email type record of each user    |
+| 3     | userPassword | string      | required | password type record of each user |
+| 4     | userName     | text        | required | mame type record of each user     |
 
-#### Table: Todos
+#### Table: todos
 
 Todos table contain details of each todo task which is created by users. Every todo task includes by default ID, todo tas as a text, date when it was creared, status of todo task such as 'done', 'not done' or 'in progress'. The todo task also contains priority status which has statuses 'important', 'urgent', 'regular' etc. Each todo task includes the id of user who created that specific todo task.
 
@@ -192,7 +192,12 @@ Fork the original project into your local repo and clone the document in your lo
 #### Step 2
 
 Add a new remote to your local repo, this way you will have access to both of the remotes, the original and your fork.
-In this case, we call the new remote upstream. The branch stagging in the upstream remote will be the one used to commit the contributions: **git remote add upStream**
+In this case, we call the new remote upstream. The branch stagging in the upstream remote will be the one used to commit the contributions:
+
+```bach
+git remote add upStream
+```
+
 ![git](./screenshots/remote-add-upstream.PNG)
 Now, the project is linked to two remotes, your fork and the original upstream:
 ![git](./screenshots/remote-v.PNG)
@@ -201,10 +206,27 @@ Now, the project is linked to two remotes, your fork and the original upstream:
 
 Work in your fork and commit the changes in your local. When having something enough relevant to push into the upstream repository follow the next steps:
 
-1. Pull the state of the upstream repository stagging branch and merge with your changes in your local with the command: **git pull --rebase upStream branch.** This will automatically merge the state into your local:
+1. Pull the state of the upstream repository stagging branch and merge with your changes in your local with the command: This will automatically merge the state into your local:
+
+```bach
+git pull --rebase upStream branch
+```
+
 ![git](./screenshots/rebase.PNG)
 
-2. Push the merged state into your fork:  **git push origin staging.**
+In the case of having conflicts between the 2 repos, you will need to merge manually.
+After that try:
+
+```bach
+git pull upStream branch
+```
+
+2. Push the merged state into your fork:
+
+```bach
+git push origin staging
+```
+
 ![git](./screenshots/push.PNG)
 
 3. Request a pull from to the upstream repository and wait for the approval to merge your contribution into the upstream stagging branch.

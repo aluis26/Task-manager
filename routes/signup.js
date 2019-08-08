@@ -12,10 +12,10 @@ router.post("/", function(req, res, next) {
   // SELECT * FROM users WHERE userName="Ainura";
 
   db(
-    "INSERT INTO users(id, userPassword, userEmail, userName) VALUES ('" + id,
-    password,
-    name,
-    email + "');"
+    "INSERT INTO users(id, userPassword, userEmail, userName) VALUES ('"+id+"",
+    "+password+",
+    name+,
+    email + ');"
   ).then(results => {
     res.send(results);
   });

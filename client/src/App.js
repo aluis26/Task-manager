@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
@@ -7,53 +7,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import NavigationBar from "./components/NavigationBar";
+import PrivateRoute from "./components/PrivateRoute";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userEmail: "",
-      userPassword: "",
-      isValidated: false
-    };
-  }
-
-  passInputUserEmail(e) {
-    this.setState({
-      inputUserEmail: e.target.value
-    });
-  }
-
-  passInputUserPassword(e) {
-    this.setState({
-      inputUserPassword: e.target.value
-    });
-  }
-
-  componentDidMount() {
-    this.fetchApi();
-  }
-
-  fetchApi = async () => {
-    const response = await fetch(`/api`);
-    const results = await response.json();
-    this.setState({ results });
-  };
-  render() {
-    return (
-      <div className="App">
-        <BrowserRouter>
-          <NavigationBar />
-          <Switch>
-            <Route exact path="/" component={Login} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-          </Switch>
-        </BrowserRouter>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <NavigationBar />
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

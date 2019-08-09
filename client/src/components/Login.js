@@ -2,33 +2,22 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
-
-function handleLogin(data) {
-  return fetch(`/api/v1/login`, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, cors, *same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
-    headers: {
-      "Content-Type": "application/json"
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer", // no-referrer, *client
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
-  })
-    .then(response => response.json())
-    .then(result => {
-      localStorage.setItem("accessToken", result.accessToken);
-    });
-}
+import login from "../api";
 
 export default function Login(props, { fieldName }) {
   let [userEmail, setUserEmail] = useState("");
   let [userPassword, setUserPassword] = useState("");
   let [isValidated, setIsValidated] = useState(false);
 
-  function handleChangeuserEmail(event) {
+  function handleLogin(data) {
+    login(data)
+      .then(response => response.json())
+      .then(result => {
+        localStorage.setItem("accessToken", result.accessToken);
+      });
+  }
+
+  function handleChangeEmail(event) {
     const value = event.target.value;
     if (value) {
       setUserEmail(value);
@@ -38,7 +27,7 @@ export default function Login(props, { fieldName }) {
     }
   }
 
-  function handleChangeuserPassword(event) {
+  function handleChangePassword(event) {
     setUserPassword(event.target.value);
     console.log("userPassword-", event.target.value);
   }
@@ -49,11 +38,23 @@ export default function Login(props, { fieldName }) {
   }
 
   function handleSubmit(event) {
-    let data = { userEmail, userPassword };
     event.preventDefault();
-    handleLogin(data).then(result => {
-      props.history.push("/dashboard");
+    let data = { userEmail, userPassword };
+    handleLogin(data, () => {
+      if (validateUserEmail(userEmail)) {
+        return userIsLoggedIn();
+      }
     });
+  }
+
+  function userIsLoggedIn(accessToken) {
+    if (localStorage.getItem(accessToken)) {
+      return this.props.history.push("/dashboard");
+    } else {
+      this.props.history.push("/login");
+    }
+    return;
+    //check if localstorage token exists, if yes, return true else redirect to log in
   }
 
   return (
@@ -62,28 +63,28 @@ export default function Login(props, { fieldName }) {
       <Form className="form">
         <h1>Login to your account</h1>
         <br />
-        <Form.Group controlId="formBasicuserEmail">
-          <Form.Label>userEmail address</Form.Label>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
           <Form.Control
             value={userEmail}
-            type="userEmail"
-            placeholder="Enter userEmail"
-            onChange={event => handleChangeuserEmail(event)}
+            type="email"
+            placeholder="Enter Email"
+            onChange={event => handleChangeEmail(event)}
           />
           <Form.Text className="text-muted">
             {isValidated ? (
-              <Alert variant="danger">Incorrect userEmail format</Alert>
+              <Alert variant="danger">Incorrect Email format</Alert>
             ) : null}
           </Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formBasicuserPassword">
-          <Form.Label>userPassword</Form.Label>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
           <Form.Control
             value={userPassword}
-            type="userPassword"
-            placeholder="userPassword"
-            onChange={event => handleChangeuserPassword(event)}
+            type="password"
+            placeholder="Password"
+            onChange={event => handleChangePassword(event)}
           />
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 export default class Dashboard extends Component {
-  state = {
-    userIsLoggedIn: false
-  };
+  // state = {
+  //   userIsLoggedIn: true
+  // };
 
   // userIsLoggedIn() {
   //   if (localStorage.getItem()) {

@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import login from "../api";
+import isLoggedIn from "./PrivateRoute";
 
 export default function Login(props, { fieldName }) {
   let [userEmail, setUserEmail] = useState("");
@@ -26,6 +27,8 @@ export default function Login(props, { fieldName }) {
       setUserEmail("");
     }
   }
+  //if value,
+  //else set useremail, setisvalidated...
 
   function handleChangePassword(event) {
     setUserPassword(event.target.value);
@@ -37,24 +40,22 @@ export default function Login(props, { fieldName }) {
     return re.test(String(userEmail).toLowerCase());
   }
 
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   let data = { userEmail, userPassword };
+  //   handleLogin(data, () => {
+  //     if (validateUserEmail(userEmail)) {
+  //       return isLoggedIn();
+  //     }
+  //   });
+  // }
   function handleSubmit(event) {
     event.preventDefault();
     let data = { userEmail, userPassword };
-    handleLogin(data, () => {
-      if (validateUserEmail(userEmail)) {
-        return userIsLoggedIn();
-      }
-    });
-  }
-
-  function userIsLoggedIn(accessToken) {
-    if (localStorage.getItem(accessToken)) {
-      return this.props.history.push("/dashboard");
-    } else {
-      this.props.history.push("/login");
+    handleLogin(data);
+    if (validateUserEmail(userEmail)) {
+      return isLoggedIn();
     }
-    return;
-    //check if localstorage token exists, if yes, return true else redirect to log in
   }
 
   return (

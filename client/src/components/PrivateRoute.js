@@ -1,7 +1,12 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-const isLoggedIn = () => false;
+export const isLoggedIn = () => {
+  if (localStorage.getItem("accessToken")) {
+    return true;
+  }
+  return false;
+};
 
 export default function PrivateRoute({ component: Component, ...rest }) {
   return (

@@ -5,7 +5,6 @@ import { Switch, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
-import Home from "./components/Home";
 import Signup from "./components/Signup";
 import NavigationBar from "./components/NavigationBar";
 
@@ -46,7 +45,7 @@ class App extends Component {
         <BrowserRouter>
           <NavigationBar />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Login} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />

@@ -24,13 +24,14 @@ export default class Signup extends Component {
               <Form.Control type="email" placeholder="Enter email" />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGriduserPassword">
-              <Form.Label>userPassword</Form.Label>
-              <Form.Control type="password" placeholder="password" />
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
             </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridConfirmuserPassword">
-              <Form.Label>Confirm userPassword</Form.Label>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridConfirmPassword">
+              <Form.Label>Confirm Password</Form.Label>
               <Form.Control type="password" placeholder="Confirm password" />
             </Form.Group>
           </Form.Row>

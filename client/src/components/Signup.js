@@ -105,12 +105,12 @@ export default function Signup(props) {
           </Form.Group>
         </Form.Row>
 
-        <Form.Group id="formGridCheckbox">
+        {/* <Form.Group id="formGridCheckbox">
           <Form.Check
             type="checkbox"
             label="I accept the terms and conditons"
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Sign Up!

@@ -239,6 +239,7 @@ git push origin staging
   DB_USER=root
   DB_PASS=YOURPASSWORD
   DB_NAME=YOURDATABASE
+- Run `node model/database.js` to run DB migrations. This will **DELETE** all your tables and data, and will re-create all tables with some dummy data.
 
 ### Dependencies
 

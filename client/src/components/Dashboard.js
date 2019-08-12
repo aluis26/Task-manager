@@ -1,15 +1,28 @@
 import React, { Component } from "react";
 
 export default class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  userIsLoggedIn() {
-    //check if localstorage token exists, if yes, return true else redirect to log in
-    return true;
-  }
+  // state = {
+  //   userIsLoggedIn: true
+  // };
+
+  // userIsLoggedIn() {
+  //   if (localStorage.getItem()) {
+  //     return this.props.history.push("/dashboard");
+  //   } else {
+  //     this.props.history.push("/login");
+  //   }
+  //   return;
+  //   //check if localstorage token exists, if yes, return true else redirect to log in
+  // }
+
   render() {
-    return <div>Dashboard</div>;
+    return (
+      <div>
+        <h1>DASHBOARD HERE</h1>
+      </div>
+    );
   }
 }
+//import login page
+//check for token localstorage.getItem("token")
+//redirect condition

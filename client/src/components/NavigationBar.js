@@ -9,7 +9,6 @@ export default class NavigationBar extends Component {
       <div>
         <Navbar bg="light">
           <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/signup">Signup</Nav.Link>
             <Nav.Link href="/dashboard">Dashboard</Nav.Link>

@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Col from "react-bootstrap/Col";
-import signup from "../api";
+import { signup } from "../api";
 
 export default function Signup(props) {
   let [userName, setUserName] = useState("");
@@ -13,11 +13,13 @@ export default function Signup(props) {
   let [isCorrect, setIsCorrect] = useState(true);
 
   function handleSignup(data) {
-    return signup(data)
-      .then(response => response.json())
-      .then(result => {
-        localStorage.setItem("accessToken", result.accessToken);
-      });
+    debugger;
+    console.log("handle signup- ", data);
+    return signup(data).then(result => {
+      console.log("signup then res => ", result);
+      debugger;
+      localStorage.setItem("accessToken", result.accessToken);
+    });
   }
 
   function handleUserName(event) {
@@ -43,9 +45,12 @@ export default function Signup(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    let data = { userEmail, userPassword };
-    if (userEmail && userPassword && userName && userConfirmPassword) {
-      handleSignup(data).then(() => props.history.push("/login"));
+    let data = { userEmail, userName, userPassword };
+    if (userEmail && userPassword && userName) {
+      handleSignup(data).then(() => {
+        debugger;
+        props.history.push("/login");
+      });
       //to do - multiple error msgs
     }
   }

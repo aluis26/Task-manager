@@ -5,9 +5,10 @@ const uuidv4 = require("uuid/v4");
 
 /* GET home page. */
 router.post("/", function(req, res, next) {
-  var userName = req.headers.name;
-  var password = req.headers.password;
-  var email = req.headers.email;
+  console.log(req);
+  var userName = req.body.userName;
+  var password = req.body.userPassword;
+  var email = req.body.userEmail;
   var id = uuidv4();
 
   // SELECT * FROM users WHERE userName="Ainura";
@@ -25,7 +26,7 @@ router.post("/", function(req, res, next) {
       email +
       "');"
   ).then(results => {
-    res.status(200).send("user created");
+    res.status(200).send({ res: "ok" });
   });
 });
 

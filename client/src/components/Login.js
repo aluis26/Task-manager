@@ -10,13 +10,6 @@ export default function Login(props) {
   let [userPassword, setUserPassword] = useState("");
   let [isValidated, setIsValidated] = useState(true);
 
-  function handleLogin(data) {
-    return login(data)
-      .then(response => response.json())
-      .then(result => {
-        localStorage.setItem("accessToken", result.accessToken);
-      });
-  }
   function handleChangeEmail(event) {
     setUserEmail(event.target.value);
     console.log("userEmail-", event.target.value);
@@ -37,7 +30,7 @@ export default function Login(props) {
     let data = { userEmail, userPassword };
 
     if (validateUserEmail(userEmail)) {
-      handleLogin(data).then(() => props.history.push("/dashboard"));
+      login(data).then(() => props.history.push("/dashboard"));
     } else {
       setIsValidated(false);
     }

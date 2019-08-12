@@ -21,9 +21,9 @@ router.post("/", function(req, res, next) {
       "', '" +
       password +
       "', '" +
-      userName +
-      "', '" +
       email +
+      "', '" +
+      userName +
       "');"
   ).then(results => {
     res.status(200).send({ res: "ok" });

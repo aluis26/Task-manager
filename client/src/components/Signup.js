@@ -13,13 +13,11 @@ export default function Signup(props) {
   let [isCorrect, setIsCorrect] = useState(true);
 
   function handleSignup(data) {
-    debugger;
     console.log("handle signup- ", data);
-    return signup(data).then(result => {
-      console.log("signup then res => ", result);
-      debugger;
-      localStorage.setItem("accessToken", result.accessToken);
-    });
+    return signup(data);
+    // .then(result => {
+    //   console.log("signup then res => ", result);
+    // });
   }
 
   function handleUserName(event) {
@@ -36,7 +34,7 @@ export default function Signup(props) {
 
   function handleUserConfirmPassword(event) {
     setUserConfirmPassword(event.target.value);
-    if (userConfirmPassword === userPassword) {
+    if (userConfirmPassword !== userPassword) {
       return setIsCorrect(true);
     } else {
       return setIsCorrect(false);
@@ -48,7 +46,6 @@ export default function Signup(props) {
     let data = { userEmail, userName, userPassword };
     if (userEmail && userPassword && userName) {
       handleSignup(data).then(() => {
-        debugger;
         props.history.push("/login");
       });
       //to do - multiple error msgs

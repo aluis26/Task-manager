@@ -1,27 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Dashboard extends Component {
-  // state = {
-  //   userIsLoggedIn: true
-  // };
-
-  // userIsLoggedIn() {
-  //   if (localStorage.getItem()) {
-  //     return this.props.history.push("/dashboard");
-  //   } else {
-  //     this.props.history.push("/login");
-  //   }
-  //   return;
-  //   //check if localstorage token exists, if yes, return true else redirect to log in
-  // }
-
-  render() {
-    return (
-      <div>
-        <h1>DASHBOARD HERE</h1>
-      </div>
-    );
-  }
+export default function Dashboard() {
+  return <h1>DASHBOARD HERE</h1>;
 }
 //import login page
 //check for token localstorage.getItem("token")

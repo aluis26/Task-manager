@@ -12,14 +12,6 @@ export default function Signup(props) {
   let [userConfirmPassword, setUserConfirmPassword] = useState("");
   let [isCorrect, setIsCorrect] = useState(true);
 
-  function handleSignup(data) {
-    console.log("handle signup- ", data);
-    return signup(data);
-    // .then(result => {
-    //   console.log("signup then res => ", result);
-    // });
-  }
-
   function handleUserName(event) {
     setUserName(event.target.value);
   }
@@ -45,7 +37,7 @@ export default function Signup(props) {
     event.preventDefault();
     let data = { userEmail, userName, userPassword };
     if (userEmail && userPassword && userName) {
-      handleSignup(data).then(() => {
+      signup(data).then(() => {
         props.history.push("/login");
       });
       //to do - multiple error msgs
@@ -104,14 +96,6 @@ export default function Signup(props) {
             ) : null}
           </Form.Group>
         </Form.Row>
-
-        {/* <Form.Group id="formGridCheckbox">
-          <Form.Check
-            type="checkbox"
-            label="I accept the terms and conditons"
-          />
-        </Form.Group> */}
-
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Sign Up!
         </Button>

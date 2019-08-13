@@ -11,7 +11,7 @@ router.post("/", function(req, res, next) {
   var password = req.body.userPassword;
 
   // find the user
-  db("SELECT * FROM users WHERE userEmail = ('" + email + "') ;").then(
+  db(`SELECT * FROM users WHERE userEmail = ('${email}') ;`).then(
     resultUser => {
       console.log("result User \n", resultUser.data[0]);
       if (resultUser.data[0].userEmail != email) {
@@ -57,49 +57,5 @@ router.post("/", function(req, res, next) {
     }
   );
 });
-
-// THIS CODE WORKS WITH DUMMY DATA
-
-// var user = fakeUsers.filter(function(e) {
-//   return e.userName == name;
-// });
-
-// if (!user[0]) {
-//   res.status(404).send("User does not exist");
-// } else {
-//   // check if password matches
-//   if (user[0].userPassword !== password) {
-//     res.status(404).send("Wrong password");
-//   } else {
-//     //if password is right and user is right, generate a token
-//     var token = jwt.sign(
-//       {
-//         userId: user[0].id
-//       },
-//       superSecret
-//       // {
-//       //   expiresInMinutes: 1440 // expires in 24 hours
-//       // }
-//     );
-//     // return the information including token as JSON
-//     return res.json({
-//       token: token,
-//       message: "worked"
-//     });
-//   }
-// }
-// )}
-
-// if user is found and password is right
-// create a token
-
-// return the information including token as JSON
-
-//validate if the credentials are ok
-//if they are ok, check if a token exists
-//if it does not exists, generate a token for this user
-//return the token to the user
-//   res.json({ accessToken: "faketoken" });
-//  });
 
 module.exports = router;

@@ -17,7 +17,8 @@ export function login(data) {
     .then(res => res.json())
     .then(result => {
       localStorage.setItem("accessToken", result.accessToken);
-    });
+    })
+    .catch(err => console.log(err));
 }
 
 export function signup(data) {

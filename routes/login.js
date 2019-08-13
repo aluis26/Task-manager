@@ -13,36 +13,45 @@ router.post("/", function(req, res, next) {
   // find the user
   db("SELECT * FROM users WHERE userEmail = ('" + email + "') ;").then(
     resultUser => {
+      console.log("result User \n", resultUser.data[0]);
       if (resultUser.data[0].userEmail != email) {
-        res.status(400).send("User does not exist");
+        // user does not exist (no email)
+        res.status(401).json({
+          code: "401",
+          message: "User does not exist"
+        });
 
         // if the user exists check the password
       } else {
         db(
-          "SELECT userPassword FROM users WHERE userEmail = ('" + email + "');"
+          `SELECT userPassword FROM users WHERE userEmail = ('${email}');`
         ).then(resultPassword => {
+          console.log("user password", resultPassword.data[0]);
           if (resultPassword.data[0].userPassword != password) {
-            res.status(400).send("Wrong password");
+            res.status(403).json({
+              code: "403",
+              message: "wrong email or password"
+            });
 
             // if password is also correct generate and send a token.
-          } else {
-            var token = jwt.sign(
-              {
-                userId: db(
-                  "SELECT id FROM users WHERE userEmail = ('" + email + "');"
-                )
-              },
-              superSecret
-              // {
-              //   expiresInMinutes: 1440 // expires in 24 hours
-              // }
-            );
-            // return the information including token as JSON
-            return res.json({
-              accessToken: token,
-              message: "here is your token"
-            });
           }
+
+          var token = jwt.sign(
+            {
+              userId: db(
+                "SELECT id FROM users WHERE userEmail = ('" + email + "');"
+              )
+            },
+            superSecret
+            // {
+            //   expiresInMinutes: 1440 // expires in 24 hours
+            // }
+          );
+          // return the information including token as JSON
+          return res.json({
+            accessToken: token,
+            message: "here is your token"
+          });
         });
       }
     }

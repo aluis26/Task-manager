@@ -19,16 +19,15 @@ export default function Login(props) {
     setUserPassword(event.target.value);
     console.log("userPassword-", event.target.value);
   }
+
   function validateUserEmail(userEmail) {
     var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     return re.test(String(userEmail).toLowerCase());
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     let data = { userEmail, userPassword };
-
     if (validateUserEmail(userEmail)) {
       login(data).then(() => props.history.push("/dashboard"));
     } else {

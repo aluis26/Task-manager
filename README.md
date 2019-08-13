@@ -221,7 +221,7 @@ After that try:
 git pull upStream branch
 ```
 
-2. Push the merged state into your fork:
+2.Push the merged state into your fork:
 
 ```bach
 git push origin staging
@@ -229,7 +229,7 @@ git push origin staging
 
 ![git](./screenshots/push.PNG)
 
-3. Request a pull from to the upstream repository and wait for the approval to merge your contribution into the upstream stagging branch.
+3.Request a pull from to the upstream repository and wait for the approval to merge your contribution into the upstream stagging branch.
 
 ### Database prep
 

@@ -22,8 +22,6 @@ export function login(data) {
 }
 
 export function signup(data) {
-  console.log("signup data: ", data);
-
   return fetch(`/api/v1/signup`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin

@@ -27,9 +27,16 @@ router.post("/", function(req, res, next) {
   let dueDate = req.body.dueDate || "2020-12-12";
 
   db(
-    `INSERT into todos(task, priority, status, dueDate) VALUES ("${task}", ${priority}, ${status}, "${dueDate}", ${userId})`
+    `INSERT into todos(task, priority, status, dueDate, userId) VALUES ("${task}", ${priority}, ${status}, "${dueDate}", ${userId})`
   ).then(resultNewTodo => {
     console.log("result todo \n", resultNewTodo);
+
+    if (!task) {
+      res.status(401).json({
+        code: "401",
+        message: "Empty todo"
+      });
+    }
     res.json({ message: "Your todo was added." });
   });
 });

@@ -58,7 +58,7 @@ export function showToDo() {
 
 export function addToDo(data) {
   // console.log("signup data: ", token);
-  debugger;
+
   console.log(data, "data");
   return fetch(`/api/v1/todos`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.

@@ -31,7 +31,7 @@ export function signup(data) {
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
       "Content-Type": "application/json"
-      // 'Content-Type': 'application/x-www-form-urlencoded',
+      //"x-access-token": 'application/x-www-form-urlencoded',
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
@@ -49,7 +49,7 @@ export function signup(data) {
 //     credentials: "same-origin", // include, *same-origin, omit
 //     headers: {
 //       "Content-Type": "application/json",
-//       Authorization: localStorage.getItem("accessToken")
+//       "x-access-token": localStorage.getItem("accessToken")
 //     },
 //     redirect: "follow", // manual, *follow, error
 //     referrer: "no-referrer" // no-referrer, *client
@@ -57,7 +57,7 @@ export function signup(data) {
 //   }).then(res => res.json());
 // }
 
-export function addToDo() {
+export function addToDo(data) {
   // console.log("signup data: ", token);
 
   return fetch(`/api/v1/todos`, {
@@ -67,10 +67,11 @@ export function addToDo() {
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("accessToken")
+      "x-access-token": localStorage.getItem("accessToken")
     },
     redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer" // no-referrer, *client
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(data)
     //  object with all the todos:
   }).then(res => res.json());
 }
@@ -85,7 +86,7 @@ export function editToDo(data) {
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("accessToken")
+      "x-access-token": localStorage.getItem("accessToken")
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
@@ -103,7 +104,7 @@ export function deleteToDo(id) {
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("accessToken")
+      "x-access-token": localStorage.getItem("accessToken")
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer" // no-referrer, *client

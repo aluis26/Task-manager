@@ -48,10 +48,13 @@ export default function Dashboard() {
     let data = { task, priority, date };
     if (task) {
       addToDo(data)
-        .then(showToDo())
-        .then(function(todos) {
-          setTodoList(todos);
+        .then((response) => {
+          console.log(response.message)
+          showToDo().then(function(todos) {
+            setTodoList(todos);
+          });
         })
+        
         .then(setAlertAdd(true));
     }
   }
@@ -79,7 +82,7 @@ export default function Dashboard() {
                 <Button>Edit</Button>
               </Col>
               <Col xs>
-                <Button>Delete</Button>
+                <Button onClick={() => {handleDelete(todo.id)}}>Delete</Button>
               </Col>
             </Row>
           </Container>
@@ -127,12 +130,12 @@ export default function Dashboard() {
           </Button>
         </Form>
       </Container>
-      if(alertAdd)
+      {if(alertAdd)
       {
         <Alert key={idx} variant={variant}>
           This is a {"success"} alert—check it out!
         </Alert>
-      }
+      }}
     </div>
   );
 }

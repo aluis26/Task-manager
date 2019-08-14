@@ -8,17 +8,30 @@ var express = require("express");
 var router = express.Router();
 var db = require("../model/helper");
 
-router.get("/", function (req, res, next) {
+router.get("/", function(req, res, next) {
   //get all todos for current users
   //return to the client in json format
   let userId = req.user.userId;
 
   db(`SELECT * FROM todos WHERE userId = ${userId}`).then(resultTodos => {
     console.log("result User \n", resultTodos.data);
-    res.json(resultTodos.data)
+    res.json(resultTodos.data);
   });
 });
 
-router.post("/", function (req, res, next) { });
+router.post("/", function(req, res, next) {
+  let userId = req.user.userId;
+  let task = req.body.task;
+  let priority = req.body.priority || 0;
+  let status = 0;
+  let dueDate = req.body.dueDate || "2020-12-12";
+
+  db(
+    `INSERT into todos(task, priority, status, dueDate) VALUES ("${task}", ${priority}, ${status}, "${dueDate}", ${userId})`
+  ).then(resultNewTodo => {
+    console.log("result todo \n", resultNewTodo);
+    res.json({ message: "Your todo was added." });
+  });
+});
 
 module.exports = router;

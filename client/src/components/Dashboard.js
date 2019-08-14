@@ -25,7 +25,7 @@ export default function Dashboard() {
 
   let [task, setTask] = useState("");
   let [priority, setPriority] = useState("");
-  let [date, setDate] = useState("");
+  let [dueDate, setDueDate] = useState("");
 
   function handleAddTask(event) {
     setTask(event.target.value);
@@ -38,18 +38,20 @@ export default function Dashboard() {
   }
 
   function handleAddDate(event) {
-    setDate(event.target.value);
+    setDueDate(event.target.value);
     console.log("Date-", event.target.value);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    let data = { task, priority, date };
+    let data = { task, priority, dueDate };
+    console.log(data);
     if (task) {
       addToDo(data).then(response => {
         console.log(response.message);
-        showToDo().then(function(todos) {
-          setTodoList(todos);
+        showToDo().then(function(response) {
+          console.log(response);
+          setTodoList(response.data);
         });
       });
     }
@@ -121,7 +123,7 @@ export default function Dashboard() {
             <Form.Group as={Col} controlId="formGridDate">
               <Form.Label>Date</Form.Label>
               <Form.Control
-                value={date}
+                value={dueDate}
                 onChange={event => handleAddDate(event)}
               />
             </Form.Group>

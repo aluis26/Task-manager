@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { showToDo } from "../api";
-import { addToo } from "../api";
+import { addToDo } from "../api";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -8,25 +8,24 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
 export default function Dashboard() {
-  var todoList = [
-    {
-      task: "this is test todo 1",
-      status: "2",
-      priority: "3",
-      date: "23/05/19"
-    },
-    {
-      task: "this is test todo 2",
-      status: "3",
-      priority: "1",
-      date: "22/05/19"
-    }
-  ];
+  // var todoList = [
+  //   {
+  //     task: "this is test todo 1",
+  //     status: "2",
+  //     priority: "3",
+  //     date: "23/05/19"
+  //   },
+  //   {
+  //     task: "this is test todo 2",
+  //     status: "3",
+  //     priority: "1",
+  //     date: "22/05/19"
+  //   }
+  // ];
 
   let [task, setTask] = useState("");
   let [priority, setPriority] = useState("");
   let [date, setDate] = useState("");
-  let [alertAdd, setAlertAdd] = useState(false);
 
   function handleAddTask(event) {
     setTask(event.target.value);
@@ -47,25 +46,22 @@ export default function Dashboard() {
     event.preventDefault();
     let data = { task, priority, date };
     if (task) {
-      addToDo(data)
-        .then((response) => {
-          console.log(response.message)
-          showToDo().then(function(todos) {
-            setTodoList(todos);
-          });
-        })
-        
-        .then(setAlertAdd(true));
+      addToDo(data).then(response => {
+        console.log(response.message);
+        showToDo().then(function(todos) {
+          setTodoList(todos);
+        });
+      });
     }
   }
 
-  // let [todoList, setTodoList] = useState([]);
+  let [todoList, setTodoList] = useState([]);
 
-  // useEffect(() => {
-  //   showToDo().then(function(todos) {
-  //     setTodoList(todos);
-  //   });
-  // }, []);
+  useEffect(() => {
+    showToDo().then(function(response) {
+      setTodoList(response.data);
+    });
+  }, []);
 
   return (
     <div>
@@ -82,7 +78,13 @@ export default function Dashboard() {
                 <Button>Edit</Button>
               </Col>
               <Col xs>
-                <Button onClick={() => {handleDelete(todo.id)}}>Delete</Button>
+                <Button
+                // onClick={() => {
+                //   handleDelete(todo.id);
+                // }}
+                >
+                  Delete
+                </Button>
               </Col>
             </Row>
           </Container>
@@ -130,12 +132,6 @@ export default function Dashboard() {
           </Button>
         </Form>
       </Container>
-      {if(alertAdd)
-      {
-        <Alert key={idx} variant={variant}>
-          This is a {"success"} alert—check it out!
-        </Alert>
-      }}
     </div>
   );
 }

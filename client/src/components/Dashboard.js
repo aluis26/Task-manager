@@ -4,7 +4,18 @@ import Button from "react-bootstrap/Button";
 
 export default function Dashboard() {
   var todoList = [
-    { name: "this is test todo", status: "2", priority: "3", date: "23/05/19" }
+    {
+      name: "this is test todo 1",
+      status: "2",
+      priority: "3",
+      date: "23/05/19"
+    },
+    {
+      name: "this is test todo 2",
+      status: "3",
+      priority: "1",
+      date: "22/05/19"
+    }
   ];
   // let [todoList, setTodoList] = useState([]);
 

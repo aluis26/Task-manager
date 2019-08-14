@@ -8,21 +8,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
 export default function Dashboard() {
-  // var todoList = [
-  //   {
-  //     task: "this is test todo 1",
-  //     status: "2",
-  //     priority: "3",
-  //     date: "23/05/19"
-  //   },
-  //   {
-  //     task: "this is test todo 2",
-  //     status: "3",
-  //     priority: "1",
-  //     date: "22/05/19"
-  //   }
-  // ];
-
   let [task, setTask] = useState("");
   let [priority, setPriority] = useState("");
   let [dueDate, setDueDate] = useState("");
@@ -33,7 +18,9 @@ export default function Dashboard() {
   }
 
   function handleAddPriority(event) {
-    setPriority(event.target.value);
+    var prio = event.target.value;
+    prio = parseInt(prio);
+    setPriority(prio);
     console.log("Priority-", event.target.value);
   }
 
@@ -44,7 +31,7 @@ export default function Dashboard() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    let data = { task, priority, dueDate };
+    let data = { task, priority, dueDate, status: 0 };
     console.log(data);
     if (task) {
       addToDo(data).then(response => {
@@ -64,7 +51,7 @@ export default function Dashboard() {
       setTodoList(response.data);
     });
   }, []);
-
+  console.log(todoList);
   return (
     <div>
       <h3>DASHBOARD HERE</h3>

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "yarn migrate && nodemon ./bin/www",
+    "migrate": "node model/database.js",
     "start:client": "cd client && yarn start",
     "build:client": "cd client && yarn build",
     "heroku-postbuild": "cd client && yarn install && yarn build"

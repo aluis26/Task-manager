@@ -8,15 +8,17 @@ var express = require("express");
 var router = express.Router();
 var db = require("../model/helper");
 
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
   //get all todos for current users
   //return to the client in json format
+  let userId = req.user.userId;
 
-  db(`SELECT * FROM todos WHERE userId = todoId`).then(resultTodos => {
-    console.log("result User \n", resultTodos.data);
+  db(`SELECT * FROM todos WHERE userId = ${userId}`).then(resultTodos => {
+    console.log("result User \n", resultTodos.data[0]);
+    res.json(resultTodos.data[0])
   });
 });
 
-router.post("/", function(req, res, next) {});
+router.post("/", function (req, res, next) { });
 
 module.exports = router;

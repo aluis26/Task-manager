@@ -18,6 +18,7 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
   let sql = "";
+
   // CREATE THE USERS TABLE
   sql =
     "DROP TABLE if exists users; CREATE TABLE users(id INT NOT NULL AUTO_INCREMENT, userName VARCHAR(255) not null, userEmail VARCHAR(255), userPassword VARCHAR(255), PRIMARY KEY (id));";
@@ -36,14 +37,15 @@ con.connect(function(err) {
 
   //ADD TODOS TABLE
   sql =
-    "DROP TABLE if exists todos; CREATE TABLE todos(todoId INT(11) NOT NULL AUTO_INCREMENT, task VARCHAR(255) not null, priority INT(1), status INT(1), dueDate DATETIME, userId INT(11), PRIMARY KEY (todoId), FOREIGN KEY (userId) REFERENCES users (id));";
+    "DROP TABLE if exists todos; CREATE TABLE todos(id INT(11) NOT NULL AUTO_INCREMENT, task VARCHAR(255) not null, priority INT(1), status INT(1), dueDate DATETIME, userId INT(11), PRIMARY KEY (id));";
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Table creation `todo` was successful!");
   });
 
+  // ADD A TEST FAKE TODO TO THE TODOS TABLE
   sql =
-    "INSERT INTO todos (task, priority, status, dueDate) VALUES ('test task', 1, 1, '2020-12-12', 2);";
+    "INSERT INTO todos (task, priority, status, dueDate, userId) VALUES ('test task todo', 1, 1, '2020-12-12', 1);";
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Creation of task was successful!");

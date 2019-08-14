@@ -5,7 +5,7 @@ var db = require("../model/helper");
 
 var superSecret = "costabrava";
 // route for authenticating users:
-router.post("/", function(req, res, next) {
+router.post("/", function (req, res, next) {
   // store the inputs in variables easy to use:
   var email = req.body.userEmail;
   var password = req.body.userPassword;
@@ -35,25 +35,23 @@ router.post("/", function(req, res, next) {
 
             // if password is also correct generate and send a token.
           }
-
-          var token = jwt.sign(
-            {
-              userId: db(
-                "SELECT id FROM users WHERE userEmail = ('" + email + "');"
-              )
-            },
-            superSecret
-            // {
-            //   expiresInMinutes: 1440 // expires in 24 hours
-            // }
-          );
-          // return the information including token as JSON
-          return res.json({
-            accessToken: token,
-            message: "here is your token"
-          });
         });
       }
+
+      var token = jwt.sign(
+        {
+          userId: resultUser.data[0].id
+        },
+        superSecret
+        // {
+        //   expiresInMinutes: 1440 // expires in 24 hours
+        // }
+      );
+      // return the information including token as JSON
+      return res.json({
+        accessToken: token,
+        message: "here is your token"
+      });
     }
   );
 });

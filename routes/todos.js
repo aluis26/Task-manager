@@ -14,8 +14,8 @@ router.get("/", function (req, res, next) {
   let userId = req.user.userId;
 
   db(`SELECT * FROM todos WHERE userId = ${userId}`).then(resultTodos => {
-    console.log("result User \n", resultTodos.data[0]);
-    res.json(resultTodos.data[0])
+    console.log("result User \n", resultTodos.data);
+    res.json(resultTodos.data)
   });
 });
 

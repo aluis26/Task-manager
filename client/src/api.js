@@ -78,7 +78,7 @@ export function addToDo(data) {
 
 export function editToDo(data) {
   // console.log("signup data: ", token);
-
+  debugger;
   return axios(`/api/v1/todos/${data.id}`, {
     method: "PUT", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin

@@ -62,7 +62,6 @@ router.post("/", function (req, res, next) {
 router.put("/:id", function (req, res, next) {
   let id = req.params.id;
   let task = req.body.task;
-
   db(`UPDATE todos SET task = "${task}" WHERE id = ${id}`).then(
     resultUpdated => {
       console.log("result todo \n", resultUpdated);

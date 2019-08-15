@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { showToDo } from "../api";
-import { addToDo } from "../api";
-import { deleteToDo } from "../api";
+import { showToDo, editToDo, addToDo, deleteToDo } from "../api";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -11,6 +9,7 @@ import Modal from "react-bootstrap/Modal";
 
 export default function Dashboard() {
   let [task, setTask] = useState("");
+
   let [priority, setPriority] = useState("");
   let [dueDate, setDueDate] = useState("");
   let [modalShow, setModalShow] = useState(false);
@@ -59,16 +58,6 @@ export default function Dashboard() {
       });
     }
   }
-  function collectId(value, id) {
-    console.log("id", id);
-    debugger;
-    setTodoId(id);
-    setModalShow(value);
-
-    console.log("id", todoId);
-    console.log("list", todoList);
-    console.log("modal", modalShow);
-  }
 
   useEffect(() => {
     showToDo().then(function(response) {
@@ -78,42 +67,70 @@ export default function Dashboard() {
   console.log(todoList);
 
   function MydModalWithGrid(props) {
-    return (
-      <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Edit your task:
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Container>
-            <Row className="show-grid">
-              <Col xs={6} md={4}>
-                <code>
-                  {/* <Form.Group as={Col} controlId="formGridTask">
+    var selectedTodo = todoList.filter(todo => todo.id == todoId);
+    let [editTask, setEditTask] = useState("");
+
+    function handleEditTask(event) {
+      setEditTask(event.target.value);
+      console.log("editTask-", event.target.value);
+    }
+
+    function handleSubmitEdit(event) {
+      event.preventDefault();
+      let data = { task: editTask, id: todoId };
+      console.log("data", data);
+      if (data) {
+        editToDo(data).then(response => {
+          console.log(response.message);
+          showToDo().then(function(response) {
+            console.log(response);
+            setTodoList(response.data.result);
+          });
+        });
+      }
+    }
+
+    if (selectedTodo.length === 1) {
+      return (
+        <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Edit your task:
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Container>
+              <Row className="show-grid">
+                <Col xs={6} md={4}>
+                  <Form.Group as={Col} controlId="formGridTask">
                     <Form.Label>Todo task</Form.Label>
                     <Form.Control
-                      value={}
-                      placeholder={}
-                      onChange={event => handleAddTask(event)}
+                      value={editTask}
+                      placeholder={selectedTodo[0].task}
+                      onChange={event => handleEditTask(event)}
                     />
-                  </Form.Group> */}
-                </code>
-              </Col>
-              <Col xs={6} md={4}>
-                <code>.col-xs-6 .col-md-4</code>
-              </Col>
-              <Col xs={6} md={4}>
-                <code>.col-xs-6 .col-md-4</code>
-              </Col>
-            </Row>
-          </Container>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
+                  </Form.Group>
+                </Col>
+                <Col xs={6} md={4}>
+                  <code>.col-xs-6 .col-md-4</code>
+                </Col>
+                <Col xs={6} md={4}>
+                  <code>.col-xs-6 .col-md-4</code>
+                </Col>
+              </Row>
+            </Container>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button type="submit" onClick={handleSubmitEdit}>
+              Submit
+            </Button>
+            <Button onClick={props.onHide}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      );
+    } else {
+      return null;
+    }
   }
 
   return (
@@ -128,7 +145,15 @@ export default function Dashboard() {
               <Col xs>Priority:{todo.priority}</Col>
               <Col xs>Due Date:{todo.dueDate}</Col>
               <Col xs>
-                <Button onClick={() => collectId(true, todo.id)}>Edit</Button>
+                <Button
+                  type="submit"
+                  onClick={function() {
+                    setTodoId(todo.id);
+                    setModalShow(true);
+                  }}
+                >
+                  Edit
+                </Button>
                 <MydModalWithGrid
                   show={modalShow}
                   onHide={() => setModalShow(false)}
@@ -179,6 +204,7 @@ export default function Dashboard() {
               <Form.Label>Date</Form.Label>
               <Form.Control
                 value={dueDate}
+                type="date"
                 onChange={event => handleAddDate(event)}
               />
             </Form.Group>

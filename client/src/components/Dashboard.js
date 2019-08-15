@@ -9,7 +9,7 @@ import Modal from "react-bootstrap/Modal";
 
 export default function Dashboard() {
   let [task, setTask] = useState("");
-  let [editTask, setEditTask] = useState("");
+
   let [priority, setPriority] = useState("");
   let [dueDate, setDueDate] = useState("");
   let [modalShow, setModalShow] = useState(false);
@@ -59,26 +59,6 @@ export default function Dashboard() {
     }
   }
 
-  function handleEditTask(event) {
-    setEditTask(event.target.value);
-    console.log("Task-", editTask);
-  }
-
-  function handleSubmitEdit(event) {
-    debugger;
-    let data = { task: editTask, id: todoId };
-    console.log(data);
-    if (data) {
-      editToDo(data).then(response => {
-        console.log(response.message);
-        showToDo().then(function(response) {
-          console.log(response);
-          setTodoList(response.data.result);
-        });
-      });
-    }
-  }
-
   useEffect(() => {
     showToDo().then(function(response) {
       setTodoList(response.data.result);
@@ -86,9 +66,30 @@ export default function Dashboard() {
   }, []);
   console.log(todoList);
 
-  var selectedTodo = todoList.filter(todo => todo.id == todoId);
   function MydModalWithGrid(props) {
-    console.log(selectedTodo);
+    var selectedTodo = todoList.filter(todo => todo.id == todoId);
+    let [editTask, setEditTask] = useState("");
+
+    function handleEditTask(event) {
+      setEditTask(event.target.value);
+      console.log("editTask-", event.target.value);
+    }
+
+    function handleSubmitEdit(event) {
+      event.preventDefault();
+      let data = { task: editTask, id: todoId };
+      console.log("data", data);
+      if (data) {
+        editToDo(data).then(response => {
+          console.log(response.message);
+          showToDo().then(function(response) {
+            console.log(response);
+            setTodoList(response.data.result);
+          });
+        });
+      }
+    }
+
     if (selectedTodo.length === 1) {
       return (
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
@@ -203,6 +204,7 @@ export default function Dashboard() {
               <Form.Label>Date</Form.Label>
               <Form.Control
                 value={dueDate}
+                type="date"
                 onChange={event => handleAddDate(event)}
               />
             </Form.Group>

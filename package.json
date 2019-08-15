@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npm migrate && nodemon ./bin/www",
+    "start": "yarn migrate && nodemon ./bin/www",
     "migrate": "node model/database.js",
-    "start:client": "cd client && npm start",
-    "build:client": "cd client && npm build",
-    "heroku-postbuild": "cd client && npm install && npm build"
+    "start:client": "cd client && yarn start",
+    "build:client": "cd client && yarn build",
+    "heroku-postbuild": "cd client && yarn install && yarn build"
   },
   "dependencies": {
     "axios": "^0.19.0",

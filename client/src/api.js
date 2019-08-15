@@ -23,8 +23,11 @@ export function login(data) {
 }
 
 export function signup(data) {
+<<<<<<< HEAD
   console.log("signup data: ", data);
 
+=======
+>>>>>>> 1e554593a634c83660953b29f918a8bb3fd8b05b
   return fetch(`/api/v1/signup`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin
@@ -54,14 +57,15 @@ export function showToDo() {
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer" // no-referrer, *client
-    //  object with all the todos:
+    //  objectswith all the todos:
   });
 }
 
 export function addToDo(data) {
   // console.log("signup data: ", token);
 
-  return axios(`/api/v1/todos`, {
+  console.log(data, "data");
+  return fetch(`/api/v1/todos`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -74,8 +78,7 @@ export function addToDo(data) {
     referrer: "no-referrer", // no-referrer, *client
     data: JSON.stringify(data)
     //  object with all the todos:
-  });
-  // .then(res => res.json());
+  }).then(res => res.json());
 }
 
 export function editToDo(data) {

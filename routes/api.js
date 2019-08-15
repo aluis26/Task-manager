@@ -6,7 +6,7 @@ var loginRouter = require("./login");
 var signupRouter = require("./signup");
 var todoRouter = require("./todos");
 var userShouldBeLoggedIn = require("./guards/userShouldBeLoggedIn");
-var todoShouldExist = require("./guards/todoShouldExist");
+
 
 
 // router.use("/", indexRouter);
@@ -14,6 +14,6 @@ var todoShouldExist = require("./guards/todoShouldExist");
 router.use("/login", loginRouter);
 router.use("/signup", signupRouter);
 router.use("/todos", userShouldBeLoggedIn, todoRouter);
-router.use("/todos/:id", todoShouldExist, todoRouter);
+router.use("/todos", todoRouter);
 
 module.exports = router;

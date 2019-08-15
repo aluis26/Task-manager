@@ -14,6 +14,5 @@ var userShouldBeLoggedIn = require("./guards/userShouldBeLoggedIn");
 router.use("/login", loginRouter);
 router.use("/signup", signupRouter);
 router.use("/todos", userShouldBeLoggedIn, todoRouter);
-router.use("/todos", todoRouter);
 
 module.exports = router;

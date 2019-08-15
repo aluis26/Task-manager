@@ -71,7 +71,7 @@ export function addToDo(data) {
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
-    data: JSON.stringify(data)
+    body: JSON.stringify(data)
     //  object with all the todos:
   }).then(res => res.json());
 }
@@ -90,15 +90,15 @@ export function editToDo(data) {
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
-    data: JSON.stringify(data)
+    body: JSON.stringify(data)
   });
   // .then(res => res.json());
 }
 
-export function deleteToDo(data) {
+export function deleteToDo(id) {
   // console.log("signup data: ", token);
 
-  return axios(`/api/v1/todos/${data.id}`, {
+  return axios(`/api/v1/todos/${id}`, {
     method: "DELETE", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var db = require("../model/helper");
 
-router.get("/", function (req, res, next) {
+router.get("/", function(req, res, next) {
   let userId = req.user.userId;
 
   db(`SELECT * FROM todos WHERE userId = ${userId}`).then(resultTodos => {
@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
       res.status(404).json({
         code: "404",
         message: "You do not have any tasks"
-      })
+      });
     }
     return res.json({
       code: "200",
@@ -21,7 +21,7 @@ router.get("/", function (req, res, next) {
   });
 });
 
-router.post("/", function (req, res, next) {
+router.post("/", function(req, res, next) {
   let userId = req.user.userId;
   let task = req.body.task;
   let priority = req.body.priority || 0;
@@ -59,7 +59,7 @@ router.post("/", function (req, res, next) {
 //   });
 // });
 
-router.put("/:id", function (req, res, next) {
+router.put("/:id", function(req, res, next) {
   let id = req.params.id;
   let task = req.body.task;
 
@@ -70,14 +70,14 @@ router.put("/:id", function (req, res, next) {
         res.status(406).json({
           code: "406",
           message: "You need to add a task"
-        })
+        });
       }
       res.json({ message: "Your todo was updated!" });
     }
   );
 });
 
-router.delete("/:id", function (req, res, next) {
+router.delete("/:id", function(req, res, next) {
   let id = req.params.id;
 
   db(`DELETE from todos WHERE id=${id}`).then(resultNewTodo => {

@@ -2,15 +2,9 @@ var express = require("express");
 var router = express.Router();
 var db = require("../model/helper");
 var todoShouldExist = require("./guards/todoShouldExist");
-var shouldBelongUser = require("./guards/todoBelongToUser")
+var shouldBelongUser = require("./guards/todoBelongToUser");
 
-<<<<<<< HEAD
 router.get("/", function(req, res, next) {
-=======
-
-//Get all todos
-router.get("/", function (req, res, next) {
->>>>>>> 9df5e21a691905822259dff0f479d57c65b10a46
   let userId = req.user.userId;
 
   db(`SELECT * FROM todos WHERE userId = ${userId}`).then(resultTodos => {
@@ -64,8 +58,7 @@ router.put("/:id", function(req, res, next) {
   });
 });
 
-
-router.put("/:id", todoShouldExist, shouldBelongUser, function (req, res, next) {
+router.put("/:id", todoShouldExist, shouldBelongUser, function(req, res, next) {
   let userId = req.user.userId;
   let id = req.params.id;
   let task = req.body.task;
@@ -84,8 +77,7 @@ router.put("/:id", todoShouldExist, shouldBelongUser, function (req, res, next) 
     }
     res.json({ message: "Your todo was updated!" });
   });
-})
-
+});
 
 router.delete("/:id", todoShouldExist, function(req, res, next) {
   let id = req.params.id;

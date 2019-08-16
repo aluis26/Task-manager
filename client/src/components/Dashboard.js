@@ -156,6 +156,18 @@ export default function Dashboard() {
 
   return (
     <div>
+    <div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom"></div>
+  </div>
+</div>
+    
       <Container>
         <h3 class="headers">My todo list:</h3>
         <Row class="table-description">

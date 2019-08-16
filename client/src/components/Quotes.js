@@ -13,8 +13,6 @@ async function fetchQuotes(){
     console.log(err);
   }
 }
-
-
  useEffect(() => {
     fetchQuotes();
   }, []);

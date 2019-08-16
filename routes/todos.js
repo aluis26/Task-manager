@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var db = require("../model/helper");
 var todoShouldExist = require("./guards/todoShouldExist");
+var shouldBelongUser = require("./guards/todoBelongToUser")
 
 //Get all todos
 router.get("/", function (req, res, next) {
@@ -43,8 +44,8 @@ router.post("/", function (req, res, next) {
   });
 });
 
-//Edit a todo 
-router.put("/:id", todoShouldExist, function (req, res, next) {
+
+
   let userId = req.user.userId;
   let id = req.params.id;
   let task = req.body.task;
@@ -65,8 +66,7 @@ router.put("/:id", todoShouldExist, function (req, res, next) {
   });
 });
 
-//Delete a todo
-router.delete("/:id", todoShouldExist, function (req, res, next) {
+
   let id = req.params.id;
   let task = req.body.task;
 

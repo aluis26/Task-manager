@@ -9,6 +9,7 @@ router.post("/", function(req, res, next) {
   // store the inputs in variables easy to use:
   var email = req.body.userEmail;
   var password = req.body.userPassword;
+ 
 
   // find the user
   db(`SELECT * FROM users WHERE userEmail = ('${email}') ;`).then(

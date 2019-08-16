@@ -45,7 +45,7 @@ router.post("/", function (req, res, next) {
 });
 
 
-
+router.put("/:id", todoShouldExist, shouldBelongUser, function (req, res, next) {
   let userId = req.user.userId;
   let id = req.params.id;
   let task = req.body.task;
@@ -64,9 +64,10 @@ router.post("/", function (req, res, next) {
     }
     res.json({ message: "Your todo was updated!" });
   });
-});
+})
 
 
+router.delete("/:id", todoShouldExist, shouldBelongUser, function (req, res, next) {
   let id = req.params.id;
   let task = req.body.task;
 

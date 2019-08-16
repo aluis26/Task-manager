@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { showToDo, editToDo } from "../api";
+import { editToDo } from "../api";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -52,15 +52,16 @@ export default function ModalEdit(props) {
   let [editStatus, setEditStatus] = useState();
   let [trigger, setTrigger] = useState(false);
 
-  // useEffect(() => {
-  //   if (todo) {
-  setTrigger(true);
-  setEditTask(todo.task);
-  setEditPriority(todo.priority);
-  setEditDueDate(todo.dueDate);
-  setEditStatus(todo.status);
-  // }
-  // }, []);
+  if (todo !== null) {
+    setTrigger(true);
+  }
+
+  useEffect(() => {
+    setEditTask(todo.task);
+    setEditPriority(todo.priority);
+    setEditDueDate(todo.dueDate);
+    setEditStatus(todo.status);
+  }, [trigger]);
 
   if (trigger) {
     return (

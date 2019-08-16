@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
+import Quotes from "./Quotes"
 
 export default function Dashboard() {
   let [task, setTask] = useState("");
@@ -253,6 +254,7 @@ export default function Dashboard() {
             </Form.Group>
           </Form.Row>
         </Form>
+        <Quotes />
       </Container>
     </div>
   );

@@ -13,7 +13,7 @@ export default function Dashboard() {
   let [dueDate, setDueDate] = useState("");
   let [modalShow, setModalShow] = useState(false);
   let [todoList, setTodoList] = useState([]);
-  let [todoId, setTodoId] = useState("");
+  let [todoId, setTodoId] = useState(null);
 
   function handleAddTask(event) {
     setTask(event.target.value);
@@ -65,8 +65,10 @@ export default function Dashboard() {
   }, []);
   console.log(todoList);
 
+  console.log(todoList);
+
   function MydModalWithGrid(props) {
-    var selectedTodo = todoList.filter(todo => todo.id == todoId);
+    var trigger = false;
 
     function handleEditTask(event) {
       setEditTask(event.target.value);
@@ -81,6 +83,11 @@ export default function Dashboard() {
     function handleEditDate(event) {
       setEditDueDate(event.target.value);
       console.log("Date-", event.target.value);
+    }
+
+    function handleEditStatus(event) {
+      setEditStatus(event.target.value);
+      console.log("Status-", event.target.value);
     }
 
     function handleSubmitEdit(event) {
@@ -98,13 +105,33 @@ export default function Dashboard() {
       }
     }
 
-    if (selectedTodo.length === 1) {
-      // let [editTask, setEditTask] = useState(selectedTodo[0].task);
-      // let [editPriority, setEditPriority] = useState(selectedTodo[0].priority);
-      // let [editDueDate, setEditDueDate] = useState(selectedTodo[0].dueDate);
-      // let [editStatus, setEditStatus] = useState(selectedTodo[0].status);
+    let [editTask, setEditTask] = useState();
+    let [editPriority, setEditPriority] = useState();
+    let [editDueDate, setEditDueDate] = useState();
+    let [editStatus, setEditStatus] = useState();
+    var [x, setX] = useState(0);
+
+    if (todoId && x === 0) {
+      var selectedTodo = todoList.filter(el => el.id == todoId);
+      trigger = true;
+      setX(1);
+      changeState();
+    }
+
+    function changeState() {
+      setEditTask(selectedTodo[0].task);
+      setEditPriority(selectedTodo[0].priority);
+      setEditDueDate(selectedTodo[0].dueDate);
+      setEditStatus(selectedTodo[0].status);
+    }
+
+    if (trigger) {
       return (
-        <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+        <Modal
+          size="xl"
+          {...props}
+          aria-labelledby="contained-modal-title-vcenter"
+        >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
               Edit your task:
@@ -113,7 +140,7 @@ export default function Dashboard() {
           <Modal.Body>
             <Container>
               <Row className="show-grid">
-                <Col xs={6} md={4}>
+                <Col xs={6} md={6}>
                   <Form.Group as={Col} controlId="formGridTask">
                     <Form.Label>Todo task</Form.Label>
                     <Form.Control
@@ -123,7 +150,7 @@ export default function Dashboard() {
                     />
                   </Form.Group>
                 </Col>
-                <Col xs={6} md={4}>
+                <Col xs={2} md={2}>
                   <Form.Group as={Col} controlId="formGridTask">
                     <Form.Label>Priority</Form.Label>
                     <Form.Control
@@ -139,7 +166,7 @@ export default function Dashboard() {
                     </Form.Control>
                   </Form.Group>
                 </Col>
-                <Col xs={6} md={4}>
+                <Col xs={2} md={2}>
                   <Form.Group as={Col} controlId="formGridTask">
                     <Form.Label>Due Date:</Form.Label>
                     <Form.Control
@@ -151,19 +178,17 @@ export default function Dashboard() {
                 </Col>
               </Row>
               <Row>
-                <Col xs={6} md={4}>
+                <Col xs={2} md={2}>
                   <Form.Group as={Col} controlId="formGridTask">
-                    <Form.Label>Priority</Form.Label>
+                    <Form.Label>Status</Form.Label>
                     <Form.Control
                       as="select"
-                      value={editPriority}
-                      onChange={event => handleEditPriorty(event)}
+                      value={editStatus}
+                      onChange={event => handleEditStatus(event)}
                     >
                       <option>Choose...</option>
                       <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
+                      <option>0</option>
                     </Form.Control>
                   </Form.Group>
                 </Col>
@@ -185,15 +210,33 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h3>DASHBOARD HERE</h3>
-      {todoList.map(function(todo) {
-        return (
-          <Container>
+      <Container>
+        <h3 class="headers">My todo list:</h3>
+        <Row class="table-description">
+          <Col xs={6} md={6}>
+            Task description:
+          </Col>
+          <Col xs={1} md={1}>
+            Status:
+          </Col>
+          <Col xs={1} md={1}>
+            Priority:
+          </Col>
+          <Col xs={2} md={2}>
+            Due date:
+          </Col>
+          <Col xs />
+          <Col xs />
+        </Row>
+        {todoList.map(function(todo) {
+          return (
             <Row>
-              <Col xs>Description:{todo.task}</Col>
-              <Col xs>Status:{todo.status}</Col>
-              <Col xs>Priority:{todo.priority}</Col>
-              <Col xs>Due Date:{todo.dueDate}</Col>
+              <Col xs={6} md={0}>
+                {todo.task}
+              </Col>
+              <Col xs>{todo.status}</Col>
+              <Col xs>{todo.priority}</Col>
+              <Col xs>{todo.dueDate}</Col>
               <Col xs>
                 <Button
                   type="submit"
@@ -219,14 +262,15 @@ export default function Dashboard() {
                 </Button>
               </Col>
             </Row>
-          </Container>
-        );
-      })}
-      <h3>ADD A TODO</h3>
+          );
+        })}
+      </Container>
+
       <Container>
+        <h3 class="headers">Add todo task for today:</h3>
         <Form>
           <Form.Row>
-            <Form.Group as={Col} controlId="formGridTask">
+            <Form.Group as={Col} md="8" controlId="formGridTask">
               <Form.Label>Todo task</Form.Label>
               <Form.Control
                 value={task}
@@ -235,7 +279,7 @@ export default function Dashboard() {
               />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridPriority">
+            <Form.Group as={Col} md="1" controlId="formGridPriority">
               <Form.Label>Priority</Form.Label>
               <Form.Control
                 as="select"
@@ -246,23 +290,23 @@ export default function Dashboard() {
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
-                <option>4</option>
               </Form.Control>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridDate">
+            <Form.Group as={Col} md="2" controlId="formGridDate">
               <Form.Label>Date</Form.Label>
               <Form.Control
-                value={dueDate}
                 type="date"
+                value={dueDate}
                 onChange={event => handleAddDate(event)}
               />
             </Form.Group>
+            <Form.Group as={Col} md="1" class="button-submit">
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
+                Submit
+              </Button>
+            </Form.Group>
           </Form.Row>
-
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
-            Submit
-          </Button>
         </Form>
       </Container>
     </div>

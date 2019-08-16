@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "yarn migrate && nodemon ./bin/www",
+    "start": "yarn run migrate && nodemon ./bin/www",
     "migrate": "node model/database.js",
     "start:client": "cd client && yarn start",
     "build:client": "cd client && yarn build",

@@ -75,7 +75,7 @@ export default function TodoList() {
                 >
                   Edit
                 </Button>
-                {todo && (
+                {selectedTodo && (
                   <ModalEdit
                     show={modalShow}
                     todo={selectedTodo}

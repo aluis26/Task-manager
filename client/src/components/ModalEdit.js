@@ -9,7 +9,9 @@ import Modal from "react-bootstrap/Modal";
 
 export default function ModalEdit(props) {
   var todo = props.todo;
-  console.log(todo);
+
+  console.log("props todo:", todo);
+  debugger;
   function handleEditTask(event) {
     setEditTask(event.target.value);
     console.log("editTask-", event.target.value);
@@ -52,16 +54,13 @@ export default function ModalEdit(props) {
   let [editStatus, setEditStatus] = useState();
   let [trigger, setTrigger] = useState(false);
 
-  if (todo !== null) {
-    setTrigger(true);
-  }
-
   useEffect(() => {
     setEditTask(todo.task);
     setEditPriority(todo.priority);
     setEditDueDate(todo.dueDate);
     setEditStatus(todo.status);
-  }, [trigger]);
+    setTrigger(true);
+  }, []);
 
   if (trigger) {
     return (

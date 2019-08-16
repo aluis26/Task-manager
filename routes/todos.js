@@ -4,6 +4,7 @@ var db = require("../model/helper");
 var todoShouldExist = require("./guards/todoShouldExist");
 var shouldBelongUser = require("./guards/todoBelongToUser")
 
+//Get all todos
 router.get("/", function (req, res, next) {
   let userId = req.user.userId;
 
@@ -21,6 +22,7 @@ router.get("/", function (req, res, next) {
   });
 });
 
+//Add a new todo
 router.post("/", function (req, res, next) {
   let userId = req.user.userId;
   let task = req.body.task;
@@ -42,7 +44,8 @@ router.post("/", function (req, res, next) {
   });
 });
 
-router.put("/:id",todoBelongToUser, function (req, res, next) {
+
+
   let userId = req.user.userId;
   let id = req.params.id;
   let task = req.body.task;
@@ -51,7 +54,7 @@ router.put("/:id",todoBelongToUser, function (req, res, next) {
   let priority = req.body.priority;
 
   db(
-    `UPDATE todos SET task = "${task}" , priority = ${priority}, status = ${status}, dueDate ="${dueDate}", userId=${userId} WHERE id = ${id}`
+    `UPDATE todos SET task = "${task}", priority = ${priority}, status = ${status}, dueDate ="${dueDate}", userId=${userId} WHERE id = ${id}`
   ).then(resultUpdated => {
     console.log("result todo \n", resultUpdated);
     if (!task) {
@@ -63,7 +66,7 @@ router.put("/:id",todoBelongToUser, function (req, res, next) {
   });
 });
 
-router.delete("/:id", todoShouldExist, todoBelongToUser, function (req, res, next) {
+
   let id = req.params.id;
   let task = req.body.task;
 

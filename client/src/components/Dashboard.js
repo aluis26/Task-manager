@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
 import React from "react";
 import TodoList from "./TodoList";
+import Quotes from "./Quotes";
 
 export default function Dashboard() {
   return (
@@ -114,6 +115,7 @@ export default function Dashboard() {
     </div>
     <React.Fragment>
       <TodoList />
+      <Quotes />
     </React.Fragment>
   );
 }

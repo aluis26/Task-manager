@@ -4,6 +4,7 @@ var db = require("../model/helper");
 var todoShouldExist = require("./guards/todoShouldExist");
 var shouldBelongUser = require("./guards/todoBelongToUser")
 
+
 //Get all todos
 router.get("/", function (req, res, next) {
   let userId = req.user.userId;
@@ -21,6 +22,7 @@ router.get("/", function (req, res, next) {
     });
   });
 });
+
 
 //Add a new todo
 router.post("/", function (req, res, next) {
@@ -41,6 +43,23 @@ router.post("/", function (req, res, next) {
       });
     }
     res.json({ message: "Your todo was added!" });
+  });
+});
+
+
+router.put("/:id", function(req, res, next) {
+  let userId = req.user.userId;
+  let id = req.params.id;
+  let task = req.body.task;
+  let dueDate = req.body.dueDate;
+  let status = req.body.status;
+  let priority = req.body.priority;
+
+  db(
+    `UPDATE todos SET task = "${task}" , priority = ${priority}, status = ${status}, dueDate ="${dueDate}", userId=${userId} WHERE id = ${id}`
+  ).then(resultNewTodo => {
+    console.log("result todo \n", resultNewTodo);
+    res.json({ message: "Your todo was updated." });
   });
 });
 
@@ -73,7 +92,13 @@ router.delete("/:id", todoShouldExist, shouldBelongUser, function (req, res, nex
 
   db(`DELETE from todos WHERE id=${id}`).then(resultNewTodo => {
     console.log("result todo \n", resultNewTodo);
+    //   if (!task) {
+    //     res.status(404).send({
+    //       code: "404",
+    //       message: "Todo not found"
+    //     })
 
+    //   }
     res.json({ message: "Your todo was deleted." });
   });
 });

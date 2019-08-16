@@ -1,3 +1,9 @@
+body{
+  display:grid;
+  justify-content: center;
+}
+
+
 .App {
   text-align: left;
 }
@@ -48,4 +54,16 @@
 
 .table-description {
   margin-bottom: 10px;
+}
+
+/*QUOTES*/
+
+.quotes{
+  margin:0;
+  margin-top: 20%;
+  padding:1%;
+  display: grid;
+  border: 1px lightblue solid;
+  width: 40vw;
+  justify-items: center;
 }

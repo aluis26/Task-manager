@@ -92,7 +92,11 @@ export default function Dashboard() {
 
     if (selectedTodo.length === 1) {
       return (
-        <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+        <Modal
+          size="xl"
+          {...props}
+          aria-labelledby="contained-modal-title-vcenter"
+        >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
               Edit your task:
@@ -101,7 +105,7 @@ export default function Dashboard() {
           <Modal.Body>
             <Container>
               <Row className="show-grid">
-                <Col xs={6} md={4}>
+                <Col xs={6} md={6}>
                   <Form.Group as={Col} controlId="formGridTask">
                     <Form.Label>Todo task</Form.Label>
                     <Form.Control
@@ -111,11 +115,27 @@ export default function Dashboard() {
                     />
                   </Form.Group>
                 </Col>
-                <Col xs={6} md={4}>
-                  <code>.col-xs-6 .col-md-4</code>
+                <Col xs={2} md={2}>
+                  <Form.Group as={Col} md="2" controlId="formGridTask">
+                    <Form.Label>Status</Form.Label>
+                    <Form.Control />
+                  </Form.Group>
                 </Col>
-                <Col xs={6} md={4}>
-                  <code>.col-xs-6 .col-md-4</code>
+                <Col xs={2} md={2}>
+                  <Form.Group as={Col} md="2" controlId="formGridTask">
+                    <Form.Label>Priority</Form.Label>
+                    <Form.Control />
+                  </Form.Group>
+                </Col>
+                <Col xs={2} md={2}>
+                  <Form.Group as={Col} md="2" controlId="formGridDate">
+                    <Form.Label>Date</Form.Label>
+                    <Form.Control
+                      type="date"
+                      value={dueDate}
+                      onChange={event => handleAddDate(event)}
+                    />
+                  </Form.Group>
                 </Col>
               </Row>
             </Container>
@@ -223,7 +243,6 @@ export default function Dashboard() {
               <Form.Control
                 type="date"
                 value={dueDate}
-                type="date"
                 onChange={event => handleAddDate(event)}
               />
             </Form.Group>

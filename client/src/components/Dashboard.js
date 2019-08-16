@@ -9,7 +9,6 @@ import Modal from "react-bootstrap/Modal";
 
 export default function Dashboard() {
   let [task, setTask] = useState("");
-
   let [priority, setPriority] = useState("");
   let [dueDate, setDueDate] = useState("");
   let [modalShow, setModalShow] = useState(false);
@@ -68,11 +67,20 @@ export default function Dashboard() {
 
   function MydModalWithGrid(props) {
     var selectedTodo = todoList.filter(todo => todo.id == todoId);
-    let [editTask, setEditTask] = useState("");
 
     function handleEditTask(event) {
       setEditTask(event.target.value);
       console.log("editTask-", event.target.value);
+    }
+    function handleEditPriorty(event) {
+      var edprio = event.target.value;
+      edprio = parseInt(edprio);
+      setEditPriority(edprio);
+      console.log("editTask-", event.target.value);
+    }
+    function handleEditDate(event) {
+      setEditDueDate(event.target.value);
+      console.log("Date-", event.target.value);
     }
 
     function handleSubmitEdit(event) {
@@ -91,6 +99,10 @@ export default function Dashboard() {
     }
 
     if (selectedTodo.length === 1) {
+      // let [editTask, setEditTask] = useState(selectedTodo[0].task);
+      // let [editPriority, setEditPriority] = useState(selectedTodo[0].priority);
+      // let [editDueDate, setEditDueDate] = useState(selectedTodo[0].dueDate);
+      // let [editStatus, setEditStatus] = useState(selectedTodo[0].status);
       return (
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
           <Modal.Header closeButton>
@@ -112,10 +124,48 @@ export default function Dashboard() {
                   </Form.Group>
                 </Col>
                 <Col xs={6} md={4}>
-                  <code>.col-xs-6 .col-md-4</code>
+                  <Form.Group as={Col} controlId="formGridTask">
+                    <Form.Label>Priority</Form.Label>
+                    <Form.Control
+                      as="select"
+                      value={editPriority}
+                      onChange={event => handleEditPriorty(event)}
+                    >
+                      <option>Choose...</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </Form.Control>
+                  </Form.Group>
                 </Col>
                 <Col xs={6} md={4}>
-                  <code>.col-xs-6 .col-md-4</code>
+                  <Form.Group as={Col} controlId="formGridTask">
+                    <Form.Label>Due Date:</Form.Label>
+                    <Form.Control
+                      value={editDueDate}
+                      type="date"
+                      onChange={event => handleEditDate(event)}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={6} md={4}>
+                  <Form.Group as={Col} controlId="formGridTask">
+                    <Form.Label>Priority</Form.Label>
+                    <Form.Control
+                      as="select"
+                      value={editPriority}
+                      onChange={event => handleEditPriorty(event)}
+                    >
+                      <option>Choose...</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </Form.Control>
+                  </Form.Group>
                 </Col>
               </Row>
             </Container>

@@ -79,7 +79,7 @@ export function addToDo(data) {
 export function editToDo(data) {
   // console.log("signup data: ", token);
 
-  return fetch(`/api/v1/todos/${data.id}`, {
+  return axios(`/api/v1/todos/${data.id}`, {
     method: "PUT", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -90,8 +90,9 @@ export function editToDo(data) {
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
-    body: JSON.stringify(data)
-  }).then(res => res.json());
+    data: data
+  });
+  // .then(res => res.json());
 }
 
 export function deleteToDo(id) {

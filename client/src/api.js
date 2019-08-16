@@ -23,11 +23,8 @@ export function login(data) {
 }
 
 export function signup(data) {
-<<<<<<< HEAD
   console.log("signup data: ", data);
 
-=======
->>>>>>> 1e554593a634c83660953b29f918a8bb3fd8b05b
   return fetch(`/api/v1/signup`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin

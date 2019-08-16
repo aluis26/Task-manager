@@ -118,15 +118,33 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h3>DASHBOARD HERE</h3>
-      {todoList.map(function(todo) {
-        return (
-          <Container>
+      <Container>
+        <h3 class="headers">My todo list:</h3>
+        <Row class="table-description">
+          <Col xs={6} md={6}>
+            Task description:
+          </Col>
+          <Col xs={1} md={1}>
+            Status:
+          </Col>
+          <Col xs={1} md={1}>
+            Priority:
+          </Col>
+          <Col xs={2} md={2}>
+            Due date:
+          </Col>
+          <Col xs />
+          <Col xs />
+        </Row>
+        {todoList.map(function(todo) {
+          return (
             <Row>
-              <Col xs>Description:{todo.task}</Col>
-              <Col xs>Status:{todo.status}</Col>
-              <Col xs>Priority:{todo.priority}</Col>
-              <Col xs>Due Date:{todo.dueDate}</Col>
+              <Col xs={6} md={0}>
+                {todo.task}
+              </Col>
+              <Col xs>{todo.status}</Col>
+              <Col xs>{todo.priority}</Col>
+              <Col xs>{todo.dueDate}</Col>
               <Col xs>
                 <Button onClick={() => collectId(true, todo.id)}>Edit</Button>
                 <MydModalWithGrid
@@ -144,14 +162,15 @@ export default function Dashboard() {
                 </Button>
               </Col>
             </Row>
-          </Container>
-        );
-      })}
-      <h3>ADD A TODO</h3>
+          );
+        })}
+      </Container>
+
       <Container>
+        <h3 class="headers">Add todo task for today:</h3>
         <Form>
           <Form.Row>
-            <Form.Group as={Col} controlId="formGridTask">
+            <Form.Group as={Col} md="8" controlId="formGridTask">
               <Form.Label>Todo task</Form.Label>
               <Form.Control
                 value={task}
@@ -160,7 +179,7 @@ export default function Dashboard() {
               />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridPriority">
+            <Form.Group as={Col} md="1" controlId="formGridPriority">
               <Form.Label>Priority</Form.Label>
               <Form.Control
                 as="select"
@@ -171,22 +190,23 @@ export default function Dashboard() {
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
-                <option>4</option>
               </Form.Control>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridDate">
+            <Form.Group as={Col} md="2" controlId="formGridDate">
               <Form.Label>Date</Form.Label>
               <Form.Control
+                type="date"
                 value={dueDate}
                 onChange={event => handleAddDate(event)}
               />
             </Form.Group>
+            <Form.Group as={Col} md="1" class="button-submit">
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
+                Submit
+              </Button>
+            </Form.Group>
           </Form.Row>
-
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
-            Submit
-          </Button>
         </Form>
       </Container>
     </div>

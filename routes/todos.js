@@ -73,12 +73,7 @@ router.delete("/:id", todoShouldExist, shouldBelongUser, function (req, res, nex
 
   db(`DELETE from todos WHERE id=${id}`).then(resultNewTodo => {
     console.log("result todo \n", resultNewTodo);
-    // if (!task) {
-    //   res.status(404).send({
-    //     message: "Todo not found"
-    //   })
 
-    // }
     res.json({ message: "Your todo was deleted." });
   });
 });

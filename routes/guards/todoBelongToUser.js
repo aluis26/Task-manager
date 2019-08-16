@@ -4,9 +4,9 @@ var db = require("../../model/helper");
 
 const todoBelongToUser = function (req, res, next) {
 const userId = req.user.id;
-const todoId = req.params.id;
+const todoId = req.params.userId;
 
-if(userId == req.todo.userId){
+if(userId == todoId){
   next()
 } else{
     res.status(404).send({

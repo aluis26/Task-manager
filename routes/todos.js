@@ -73,6 +73,7 @@ router.delete("/:id", todoShouldExist, shouldBelongUser, function (req, res, nex
 
   db(`DELETE from todos WHERE id=${id}`).then(resultNewTodo => {
     console.log("result todo \n", resultNewTodo);
+
     res.json({ message: "Your todo was deleted." });
   });
 });

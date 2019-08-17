@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
 import Quotes from "./Quotes";
+// import Weather from "./Weather";
 
 export default function Dashboard() {
   let [task, setTask] = useState("");
@@ -38,7 +39,7 @@ export default function Dashboard() {
     console.log(id);
     deleteToDo(id).then(response => {
       console.log("message", response);
-      showToDo().then(function(response) {
+      showToDo().then(function (response) {
         console.log("message", response);
         setTodoList(response.data.result);
       });
@@ -52,7 +53,7 @@ export default function Dashboard() {
     if (task) {
       addToDo(data).then(response => {
         console.log(response.message);
-        showToDo().then(function(response) {
+        showToDo().then(function (response) {
           console.log(response);
           setTodoList(response.data.result);
         });
@@ -61,11 +62,11 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    showToDo().then(function(response) {
+    showToDo().then(function (response) {
       setTodoList(response.data.result);
     });
   }, []);
-  console.log(todoList);
+  // console.log(todoList);
 
   function MydModalWithGrid(props) {
     var selectedTodo = todoList.filter(todo => todo.id == todoId);
@@ -83,7 +84,7 @@ export default function Dashboard() {
       if (data) {
         editToDo(data).then(response => {
           console.log(response.message);
-          showToDo().then(function(response) {
+          showToDo().then(function (response) {
             console.log(response);
             setTodoList(response.data.result);
           });
@@ -93,6 +94,7 @@ export default function Dashboard() {
 
     if (selectedTodo.length === 1) {
       return (
+
         <Modal
           size="xl"
           {...props}
@@ -156,6 +158,9 @@ export default function Dashboard() {
 
   return (
     <div>
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <div class="waveWrapper waveAnimation">
   <div class="waveWrapperInner bgTop">
     <div class="wave waveTop"></div>
@@ -168,9 +173,18 @@ export default function Dashboard() {
   </div>
 </div>
     
+=======
+
+>>>>>>> Stashed changes
+=======
+
+>>>>>>> Stashed changes
+=======
+
+>>>>>>> Stashed changes
       <Container>
-        <h3 class="headers">My todo list:</h3>
-        <Row class="table-description">
+        <h3 className="headers">My todo list:</h3>
+        <Row className="table-description">
           <Col xs={6} md={6}>
             Task description:
           </Col>
@@ -186,10 +200,10 @@ export default function Dashboard() {
           <Col xs />
           <Col xs />
         </Row>
-        {todoList.map(function(todo) {
+        {todoList.map(function (todo) {
           return (
             <Row>
-              <Col xs={6} md={0}>
+              <Col xs={6} md={0} key={todo.id}>
                 {todo.task}
               </Col>
               <Col xs>{todo.status}</Col>
@@ -198,7 +212,7 @@ export default function Dashboard() {
               <Col xs>
                 <Button
                   type="submit"
-                  onClick={function() {
+                  onClick={function () {
                     setTodoId(todo.id);
                     setModalShow(true);
                   }}
@@ -225,7 +239,7 @@ export default function Dashboard() {
       </Container>
 
       <Container>
-        <h3 class="headers">Add todo task for today:</h3>
+        <h3 className="headers">Add todo task for today:</h3>
         <Form>
           <Form.Row>
             <Form.Group as={Col} md="8" controlId="formGridTask">
@@ -259,7 +273,7 @@ export default function Dashboard() {
                 onChange={event => handleAddDate(event)}
               />
             </Form.Group>
-            <Form.Group as={Col} md="1" class="button-submit">
+            <Form.Group as={Col} md="1" className="button-submit">
               <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Submit
               </Button>

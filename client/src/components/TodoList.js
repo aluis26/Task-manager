@@ -16,7 +16,7 @@ export default function TodoList() {
     console.log(id);
     deleteToDo(id).then(response => {
       console.log("message", response);
-      showToDo().then(function(response) {
+      showToDo().then(function (response) {
         console.log("message", response);
         setTodoList(response.data.result);
       });
@@ -24,7 +24,7 @@ export default function TodoList() {
   }
 
   function fetchTodos() {
-    showToDo().then(function(response) {
+    showToDo().then(function (response) {
       setTodoList(response.data.result);
     });
   }
@@ -39,8 +39,8 @@ export default function TodoList() {
   return (
     <React.Fragment>
       <Container>
-        <h3 class="headers">My todo list:</h3>
-        <Row class="table-description">
+        <h3 className="headers">My todo list:</h3>
+        <Row className="table-description">
           <Col xs={6} md={6}>
             Task description:
           </Col>
@@ -56,7 +56,7 @@ export default function TodoList() {
           <Col xs />
           <Col xs />
         </Row>
-        {todoList.map(function(todo) {
+        {todoList.map(function (todo) {
           return (
             <Row>
               <Col xs={6} md={0}>
@@ -68,7 +68,7 @@ export default function TodoList() {
               <Col xs>
                 <Button
                   type="submit"
-                  onClick={function() {
+                  onClick={function () {
                     setSelectedTodo(todo);
                     setModalShow(true);
                   }}

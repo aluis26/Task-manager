@@ -10,6 +10,12 @@ import Modal from "react-bootstrap/Modal";
 export default function ModalEdit(props) {
   var todo = props.todo;
 
+  let [editTask, setEditTask] = useState();
+  let [editPriority, setEditPriority] = useState();
+  let [editDueDate, setEditDueDate] = useState();
+  let [editStatus, setEditStatus] = useState();
+  let [trigger, setTrigger] = useState(false);
+
   console.log("props todo:", todo);
   function handleEditTask(event) {
     setEditTask(event.target.value);
@@ -47,19 +53,25 @@ export default function ModalEdit(props) {
     }
   }
 
-  let [editTask, setEditTask] = useState();
-  let [editPriority, setEditPriority] = useState();
-  let [editDueDate, setEditDueDate] = useState();
-  let [editStatus, setEditStatus] = useState();
-  let [trigger, setTrigger] = useState(false);
-
   useEffect(() => {
     setEditTask(todo.task);
     setEditPriority(todo.priority);
-    setEditDueDate(todo.dueDate);
+    setEditDueDate(todo.dueDate.split("T")[0]);
     setEditStatus(todo.status);
     setTrigger(true);
-  }, []);
+    debugger;
+  }, [todo]);
+
+  console.log(
+    "task",
+    editTask,
+    "priority",
+    editPriority,
+    "dueDate",
+    editDueDate,
+    "status",
+    editStatus
+  );
 
   if (trigger) {
     return (
@@ -92,6 +104,7 @@ export default function ModalEdit(props) {
                   <Form.Control
                     as="select"
                     value={editPriority}
+                    placeholder={editPriority}
                     onChange={event => handleEditPriorty(event)}
                   >
                     <option>Choose...</option>
@@ -106,6 +119,7 @@ export default function ModalEdit(props) {
                   <Form.Label>Due Date:</Form.Label>
                   <Form.Control
                     value={editDueDate}
+                    placeholder={editDueDate}
                     type="date"
                     onChange={event => handleEditDate(event)}
                   />
@@ -119,6 +133,7 @@ export default function ModalEdit(props) {
                   <Form.Control
                     as="select"
                     value={editStatus}
+                    placeholder={editStatus}
                     onChange={event => handleEditStatus(event)}
                   >
                     <option>Choose...</option>

@@ -15,6 +15,10 @@ export default function TodoList() {
   function libraryPriority(prio) {
     let library = [["High", 1], ["Medium", 2], ["Low", 3]];
     let x;
+
+    if (prio == x) {
+      return undefined;
+    }
     if (typeof prio === "number") {
       x = library.filter(e => e[1] === prio);
       return x[0][0];
@@ -27,6 +31,10 @@ export default function TodoList() {
   function libraryStatus(stat) {
     let library = [["Undone", 0], ["Done", 1]];
     let x;
+
+    if (stat == x) {
+      return undefined;
+    }
     if (typeof stat === "number") {
       x = library.filter(e => e[1] === stat);
       return x[0][0];
@@ -88,7 +96,7 @@ export default function TodoList() {
               </Col>
               <Col xs>{libraryStatus(todo.status)}</Col>
               <Col xs>{libraryPriority(todo.priority)}</Col>
-              <Col xs>{todo.dueDate}</Col>
+              <Col xs>{todo.dueDate.split("T")[0]}</Col>
               <Col xs>
                 <Button
                   type="submit"

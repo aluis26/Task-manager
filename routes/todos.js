@@ -63,7 +63,11 @@ router.put("/:id", todoShouldExist, shouldBelongUser, function (req, res, next) 
   });
 });
 
-router.delete("/:id", todoShouldExist, function (req, res, next) {
+router.delete("/:id", todoShouldExist, shouldBelongUser, function (
+  req,
+  res,
+  next
+) {
   let id = req.params.id;
 
   db(`DELETE from todos WHERE id=${id}`).then(resultNewTodo => {

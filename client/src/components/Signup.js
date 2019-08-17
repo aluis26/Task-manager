@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Col from "react-bootstrap/Col";
 import { signup } from "../api";
+import "./../App.css";
+import img from "./../assets/todo.svg";
 
 export default function Signup(props) {
   let [userName, setUserName] = useState("");
@@ -66,7 +68,10 @@ export default function Signup(props) {
 
   return (
     <div>
-      <Form className="signup-form">
+      <div className="d-inline-block">
+        <img className="imgSignUp" src={img} alt="" />
+      </div>
+      <Form className="d-inline-block signup-form float-right">
         <h1>Sign Up Here!</h1>
         <br />
         <Form.Row>
@@ -123,7 +128,9 @@ export default function Signup(props) {
           </Form.Group>
         </Form.Row>
         {!isInputFilled ? (
-          <Alert variant="danger">All input are required</Alert>
+          <Alert className="alert" variant="danger">
+            All input are required
+          </Alert>
         ) : null}
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Sign Up!

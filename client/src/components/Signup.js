@@ -19,6 +19,10 @@ export default function Signup(props) {
   function handleUserEmail(event) {
     setUserEmail(event.target.value);
   }
+  function validateUserEmail(userEmail) {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(userEmail).toLowerCase());
+  }
 
   function handleUserPassword(event) {
     setUserPassword(event.target.value);
@@ -26,21 +30,23 @@ export default function Signup(props) {
 
   function handleUserConfirmPassword(event) {
     setUserConfirmPassword(event.target.value);
-    if (userConfirmPassword !== userPassword) {
-      return setIsCorrect(true);
-    } else {
-      return setIsCorrect(false);
-    }
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     let data = { userEmail, userName, userPassword };
-    if (userEmail && userPassword && userName) {
+    if (
+      userPassword === userConfirmPassword &&
+      userPassword.length > 6 &&
+      validateUserEmail(userEmail) &&
+      userName
+    ) {
       signup(data).then(() => {
         props.history.push("/login");
       });
       //to do - multiple error msgs
+    } else {
+      console.log("error");
     }
   }
 

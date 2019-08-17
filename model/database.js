@@ -28,12 +28,12 @@ con.connect(function (err) {
   });
 
   // ADD A TEST FAKE USER TO THE USERS TABLE
-  // sql =
-  //   "INSERT INTO users (userName, userEmail, userPassword) VALUES ('test', 'test@test.com', 'test');";
-  // con.query(sql, function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Creation of 'test' user was successful!");
-  // });
+  sql =
+    "INSERT INTO users (userName, userEmail, userPassword) VALUES ('test', 'test@test.com', 'test');";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Creation of 'test' user was successful!");
+  });
 
   //ADD TODOS TABLE
   sql =
@@ -44,13 +44,13 @@ con.connect(function (err) {
   });
 
   // ADD A TEST FAKE TODO TO THE TODOS TABLE
-  // sql =
-  //   "INSERT INTO todos (task, priority, status, dueDate, userId) VALUES ('test task todo', 1, 1, '2020-12-12', 1);";
-  // con.query(sql, function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Creation of task was successful!");
-  // });
-  // console.log("Closing...");
+  sql =
+    "INSERT INTO todos (task, priority, status, dueDate, userId) VALUES ('test task todo', 1, 1, '2020-12-12', 1);";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Creation of task was successful!");
+  });
+  console.log("Closing...");
 
   con.end();
 });

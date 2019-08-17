@@ -11,24 +11,23 @@ export default function ModalEdit(props) {
   var todo = props.todo;
 
   console.log("props todo:", todo);
-  debugger;
   function handleEditTask(event) {
     setEditTask(event.target.value);
     console.log("editTask-", event.target.value);
   }
   function handleEditPriorty(event) {
     var edprio = event.target.value;
-    edprio = parseInt(edprio);
-    setEditPriority(edprio);
-    console.log("editTask-", event.target.value);
+    setEditPriority(props.libraryPriority(edprio));
+    console.log("priority- ", editPriority);
   }
   function handleEditDate(event) {
     setEditDueDate(event.target.value);
     console.log("Date-", event.target.value);
   }
   function handleEditStatus(event) {
-    setEditStatus(event.target.value);
-    console.log("Status-", event.target.value);
+    var stat = event.target.value;
+    setEditStatus(props.libraryStatus(stat));
+    console.log("Status-", editStatus);
   }
   function handleSubmitEdit(event) {
     event.preventDefault();
@@ -96,10 +95,9 @@ export default function ModalEdit(props) {
                     onChange={event => handleEditPriorty(event)}
                   >
                     <option>Choose...</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -124,8 +122,8 @@ export default function ModalEdit(props) {
                     onChange={event => handleEditStatus(event)}
                   >
                     <option>Choose...</option>
-                    <option>1</option>
-                    <option>0</option>
+                    <option>Done</option>
+                    <option>Undone</option>
                   </Form.Control>
                 </Form.Group>
               </Col>

@@ -52,5 +52,5 @@ con.connect(function (err) {
   // });
   // console.log("Closing...");
 
-  // con.end();
+  con.end();
 });

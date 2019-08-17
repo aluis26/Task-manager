@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { showToDo, addToDo } from "../api";
+import React, { useState } from "react";
+import { addToDo } from "../api";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -38,7 +38,7 @@ export default function AddTodo(props) {
 
   return (
     <Container>
-      <h3 class="headers">Add todo task for today:</h3>
+      <h3 className="headers">Add todo task for today:</h3>
       <Form>
         <Form.Row>
           <Form.Group as={Col} md="8" controlId="formGridTask">
@@ -70,7 +70,7 @@ export default function AddTodo(props) {
               onChange={event => handleAddDate(event)}
             />
           </Form.Group>
-          <Form.Group as={Col} md="1" class="button-submit">
+          <Form.Group as={Col} md="1" className="button-submit">
             <Button variant="primary" type="submit" onClick={handleSubmit}>
               Submit
             </Button>

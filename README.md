@@ -91,7 +91,7 @@ The back end part will be built in Node. The server will be allocated in Heroku 
 ### Complementary API
 
 At least two other APIs from 3rd parties will be used in this application.  
--Wheater information from the localization through Open Wheather map API (`https://openweathermap.org`)  
+-Weather information from the localization through Open Wheather map API (`https://openweathermap.org`)  
 -Quotes through the open API of They Said So. (`https://theysaidso.com`)  
 In the first phase of the project, the front end part will connect directly with them.  
 In the second part we are planning to make the connection through the back end and maybe store some of the data coming from this APIs:

@@ -4,7 +4,7 @@ var db = require("../model/helper");
 var todoShouldExist = require("./guards/todoShouldExist");
 var shouldBelongUser = require("./guards/todoBelongToUser");
 
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
   let userId = req.user.userId;
 
   db(`SELECT * FROM todos WHERE userId = ${userId}`).then(resultTodos => {
@@ -21,7 +21,7 @@ router.get("/", function(req, res, next) {
   });
 });
 
-router.post("/", function(req, res, next) {
+router.post("/", function (req, res, next) {
   let userId = req.user.userId;
   let task = req.body.task;
   let priority = req.body.priority || 0;
@@ -42,23 +42,7 @@ router.post("/", function(req, res, next) {
   });
 });
 
-router.put("/:id", function(req, res, next) {
-  let userId = req.user.userId;
-  let id = req.params.id;
-  let task = req.body.task;
-  let dueDate = req.body.dueDate;
-  let status = req.body.status;
-  let priority = req.body.priority;
-
-  db(
-    `UPDATE todos SET task = "${task}" , priority = ${priority}, status = ${status}, dueDate ="${dueDate}", userId=${userId} WHERE id = ${id}`
-  ).then(resultNewTodo => {
-    console.log("result todo \n", resultNewTodo);
-    res.json({ message: "Your todo was updated." });
-  });
-});
-
-router.put("/:id", todoShouldExist, shouldBelongUser, function(req, res, next) {
+router.put("/:id", todoShouldExist, shouldBelongUser, function (req, res, next) {
   let userId = req.user.userId;
   let id = req.params.id;
   let task = req.body.task;
@@ -79,7 +63,7 @@ router.put("/:id", todoShouldExist, shouldBelongUser, function(req, res, next) {
   });
 });
 
-router.delete("/:id", todoShouldExist, shouldBelongUser, function(
+router.delete("/:id", todoShouldExist, shouldBelongUser, function (
   req,
   res,
   next
@@ -88,12 +72,6 @@ router.delete("/:id", todoShouldExist, shouldBelongUser, function(
 
   db(`DELETE from todos WHERE id=${id}`).then(resultNewTodo => {
     console.log("result todo \n", resultNewTodo);
-    // if (!task) {
-    //   res.status(404).send({
-    //     message: "Todo not found"
-    //   })
-
-    // }
     res.json({ message: "Your todo was deleted." });
   });
 });

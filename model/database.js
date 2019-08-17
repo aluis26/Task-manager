@@ -28,29 +28,29 @@ con.connect(function (err) {
   });
 
   // ADD A TEST FAKE USER TO THE USERS TABLE
-  sql =
-    "INSERT INTO users (userName, userEmail, userPassword) VALUES ('test', 'test@test.com', 'test');";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Creation of 'test' user was successful!");
-  });
+  // sql =
+  //   "INSERT INTO users (userName, userEmail, userPassword) VALUES ('test', 'test@test.com', 'test');";
+  // con.query(sql, function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Creation of 'test' user was successful!");
+  // });
 
   //ADD TODOS TABLE
   sql =
-    "DROP TABLE if exists todos; CREATE TABLE todos(id INT(11) NOT NULL AUTO_INCREMENT, task VARCHAR(255) not null, priority INT(1), status INT(1), dueDate DATE, userId INT(11), PRIMARY KEY (id));";
+    "DROP TABLE if exists todos; CREATE TABLE todos(id INT(11) NOT NULL AUTO_INCREMENT, task VARCHAR(255) not null, priority INT(1), status INT(1), dueDate DATE NOT NULL, userId INT(11), PRIMARY KEY (id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `todo` was successful!");
   });
 
   // ADD A TEST FAKE TODO TO THE TODOS TABLE
-  sql =
-    "INSERT INTO todos (task, priority, status, dueDate, userId) VALUES ('test task todo', 1, 1, '2020-12-12', 1);";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Creation of task was successful!");
-  });
-  console.log("Closing...");
+  // sql =
+  //   "INSERT INTO todos (task, priority, status, dueDate, userId) VALUES ('test task todo', 1, 1, '2020-12-12', 1);";
+  // con.query(sql, function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Creation of task was successful!");
+  // });
+  // console.log("Closing...");
 
   con.end();
 });

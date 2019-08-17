@@ -11,7 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App backgroundColor">
       <BrowserRouter>
         <NavigationBar />
         <Switch>

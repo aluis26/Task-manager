@@ -4,13 +4,18 @@ import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Col from "react-bootstrap/Col";
 import { signup } from "../api";
+import "./../App.css";
+import img from "./../assets/todo.svg";
 
 export default function Signup(props) {
   let [userName, setUserName] = useState("");
   let [userEmail, setUserEmail] = useState("");
   let [userPassword, setUserPassword] = useState("");
   let [userConfirmPassword, setUserConfirmPassword] = useState("");
-  let [isCorrect, setIsCorrect] = useState(true);
+  let [isInputFilled, setIsInputFilled] = useState(true);
+  let [isValidEmail, setIsValidEmail] = useState(true);
+  let [isPassValid, setisPassValid] = useState(true);
+  let [isSamePass, setIsSamePass] = useState(true);
 
   function handleUserName(event) {
     setUserName(event.target.value);
@@ -19,6 +24,10 @@ export default function Signup(props) {
   function handleUserEmail(event) {
     setUserEmail(event.target.value);
   }
+  function validateUserEmail(userEmail) {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(userEmail).toLowerCase());
+  }
 
   function handleUserPassword(event) {
     setUserPassword(event.target.value);
@@ -26,28 +35,44 @@ export default function Signup(props) {
 
   function handleUserConfirmPassword(event) {
     setUserConfirmPassword(event.target.value);
-    if (userConfirmPassword !== userPassword) {
-      return setIsCorrect(true);
-    } else {
-      return setIsCorrect(false);
-    }
   }
 
   function handleSubmit(event) {
     debugger;
     event.preventDefault();
     let data = { userEmail, userName, userPassword };
-    if (userEmail && userPassword && userName) {
+    if (
+      userPassword === userConfirmPassword &&
+      userPassword.length > 6 &&
+      validateUserEmail(userEmail) &&
+      userName
+    ) {
       signup(data).then(() => {
         props.history.push("/login");
       });
       //to do - multiple error msgs
+    } else if (
+      userEmail === "" ||
+      userName === "" ||
+      userPassword === "" ||
+      userConfirmPassword === ""
+    ) {
+      setIsInputFilled(false);
+    } else if (validateUserEmail()) {
+      setIsValidEmail(false);
+    } else if (userPassword.length < 6) {
+      setisPassValid(false);
+    } else if (userPassword !== userConfirmPassword) {
+      setIsSamePass(false);
     }
   }
 
   return (
     <div>
-      <Form className="signup-form">
+      <div className="d-inline-block">
+        <img className="imgSignUp" src={img} alt="" />
+      </div>
+      <Form className="d-inline-block signup-form float-right">
         <h1>Sign Up Here!</h1>
         <br />
         <Form.Row>
@@ -71,6 +96,9 @@ export default function Signup(props) {
               placeholder="Enter email"
               onChange={event => handleUserEmail(event)}
             />
+            {!isValidEmail ? (
+              <Alert variant="danger">That's not a valid email</Alert>
+            ) : null}
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPassword">
@@ -81,6 +109,9 @@ export default function Signup(props) {
               placeholder="Password"
               onChange={event => handleUserPassword(event)}
             />
+            {!isPassValid ? (
+              <Alert variant="danger">That's not a valid password</Alert>
+            ) : null}
           </Form.Group>
         </Form.Row>
         <Form.Row>
@@ -92,11 +123,16 @@ export default function Signup(props) {
               placeholder="Confirm password"
               onChange={event => handleUserConfirmPassword(event)}
             />
-            {!isCorrect ? (
-              <Alert variant="danger">Your passwords do not match</Alert>
+            {!isSamePass ? (
+              <Alert variant="danger">Password should be the same</Alert>
             ) : null}
           </Form.Group>
         </Form.Row>
+        {!isInputFilled ? (
+          <Alert className="alert" variant="danger">
+            All input are required
+          </Alert>
+        ) : null}
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Sign Up!
         </Button>

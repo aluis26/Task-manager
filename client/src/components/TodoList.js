@@ -12,6 +12,38 @@ export default function TodoList() {
   let [todoList, setTodoList] = useState([]);
   let [selectedTodo, setSelectedTodo] = useState(null);
 
+  function libraryPriority(prio) {
+    let library = [["High", 1], ["Medium", 2], ["Low", 3]];
+    let x;
+
+    if (prio == x) {
+      return undefined;
+    }
+    if (typeof prio === "number") {
+      x = library.filter(e => e[1] === prio);
+      return x[0][0];
+    } else {
+      x = library.filter(e => e[0] === prio);
+      return x[0][1];
+    }
+  }
+
+  function libraryStatus(stat) {
+    let library = [["Undone", 0], ["Done", 1]];
+    let x;
+
+    if (stat == x) {
+      return undefined;
+    }
+    if (typeof stat === "number") {
+      x = library.filter(e => e[1] === stat);
+      return x[0][0];
+    } else {
+      x = library.filter(e => e[0] === stat);
+      return x[0][1];
+    }
+  }
+
   function handleDelete(id) {
     console.log(id);
     deleteToDo(id).then(response => {
@@ -39,8 +71,8 @@ export default function TodoList() {
   return (
     <React.Fragment>
       <Container>
-        <h3 class="headers">My todo list:</h3>
-        <Row class="table-description">
+        <h3 className="headers">My todo list:</h3>
+        <Row className="table-description">
           <Col xs={6} md={6}>
             Task description:
           </Col>
@@ -62,9 +94,9 @@ export default function TodoList() {
               <Col xs={6} md={0}>
                 {todo.task}
               </Col>
-              <Col xs>{todo.status}</Col>
-              <Col xs>{todo.priority}</Col>
-              <Col xs>{todo.dueDate}</Col>
+              <Col xs>{libraryStatus(todo.status)}</Col>
+              <Col xs>{libraryPriority(todo.priority)}</Col>
+              <Col xs>{todo.dueDate.split("T")[0]}</Col>
               <Col xs>
                 <Button
                   type="submit"
@@ -81,6 +113,8 @@ export default function TodoList() {
                     todo={selectedTodo}
                     onHide={() => setModalShow(false)}
                     updateTodos={updateTodos}
+                    libraryStatus={libraryStatus}
+                    libraryPriority={libraryPriority}
                   />
                 )}
               </Col>
@@ -97,7 +131,11 @@ export default function TodoList() {
           );
         })}
       </Container>
-      <AddTodo updateTodos={updateTodos} />
+      <AddTodo
+        updateTodos={updateTodos}
+        libraryStatus={libraryStatus}
+        libraryPriority={libraryPriority}
+      />
     </React.Fragment>
   );
 }

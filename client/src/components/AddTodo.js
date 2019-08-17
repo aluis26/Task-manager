@@ -16,9 +16,8 @@ export default function AddTodo(props) {
   }
   function handleAddPriority(event) {
     var prio = event.target.value;
-    prio = parseInt(prio);
-    setPriority(prio);
-    console.log("Priority-", event.target.value);
+    setPriority(props.libraryPriority(prio));
+    console.log("priority- ", priority);
   }
   function handleAddDate(event) {
     setDueDate(event.target.value);
@@ -57,13 +56,13 @@ export default function AddTodo(props) {
               onChange={event => handleAddPriority(event)}
             >
               <option>Choose...</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
             </Form.Control>
           </Form.Group>
           <Form.Group as={Col} md="2" controlId="formGridDate">
-            <Form.Label>Date</Form.Label>
+            <Form.Label>Due date</Form.Label>
             <Form.Control
               type="date"
               value={dueDate}

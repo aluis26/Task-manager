@@ -10,25 +10,30 @@ import Modal from "react-bootstrap/Modal";
 export default function ModalEdit(props) {
   var todo = props.todo;
 
+  let [editTask, setEditTask] = useState();
+  let [editPriority, setEditPriority] = useState();
+  let [editDueDate, setEditDueDate] = useState();
+  let [editStatus, setEditStatus] = useState();
+  let [trigger, setTrigger] = useState(false);
+
   console.log("props todo:", todo);
-  debugger;
   function handleEditTask(event) {
     setEditTask(event.target.value);
     console.log("editTask-", event.target.value);
   }
   function handleEditPriorty(event) {
     var edprio = event.target.value;
-    edprio = parseInt(edprio);
-    setEditPriority(edprio);
-    console.log("editTask-", event.target.value);
+    setEditPriority(props.libraryPriority(edprio));
+    console.log("priority- ", editPriority);
   }
   function handleEditDate(event) {
     setEditDueDate(event.target.value);
     console.log("Date-", event.target.value);
   }
   function handleEditStatus(event) {
-    setEditStatus(event.target.value);
-    console.log("Status-", event.target.value);
+    var stat = event.target.value;
+    setEditStatus(props.libraryStatus(stat));
+    console.log("Status-", editStatus);
   }
   function handleSubmitEdit(event) {
     event.preventDefault();
@@ -48,19 +53,25 @@ export default function ModalEdit(props) {
     }
   }
 
-  let [editTask, setEditTask] = useState();
-  let [editPriority, setEditPriority] = useState();
-  let [editDueDate, setEditDueDate] = useState();
-  let [editStatus, setEditStatus] = useState();
-  let [trigger, setTrigger] = useState(false);
-
   useEffect(() => {
     setEditTask(todo.task);
     setEditPriority(todo.priority);
-    setEditDueDate(todo.dueDate);
+    setEditDueDate(todo.dueDate.split("T")[0]);
     setEditStatus(todo.status);
     setTrigger(true);
-  }, []);
+    debugger;
+  }, [todo]);
+
+  console.log(
+    "task",
+    editTask,
+    "priority",
+    editPriority,
+    "dueDate",
+    editDueDate,
+    "status",
+    editStatus
+  );
 
   if (trigger) {
     return (
@@ -93,13 +104,13 @@ export default function ModalEdit(props) {
                   <Form.Control
                     as="select"
                     value={editPriority}
+                    placeholder={editPriority}
                     onChange={event => handleEditPriorty(event)}
                   >
                     <option>Choose...</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -108,6 +119,7 @@ export default function ModalEdit(props) {
                   <Form.Label>Due Date:</Form.Label>
                   <Form.Control
                     value={editDueDate}
+                    placeholder={editDueDate}
                     type="date"
                     onChange={event => handleEditDate(event)}
                   />
@@ -121,11 +133,12 @@ export default function ModalEdit(props) {
                   <Form.Control
                     as="select"
                     value={editStatus}
+                    placeholder={editStatus}
                     onChange={event => handleEditStatus(event)}
                   >
                     <option>Choose...</option>
-                    <option>1</option>
-                    <option>0</option>
+                    <option>Done</option>
+                    <option>Undone</option>
                   </Form.Control>
                 </Form.Group>
               </Col>

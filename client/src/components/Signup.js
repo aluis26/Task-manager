@@ -38,6 +38,7 @@ export default function Signup(props) {
   }
 
   function handleSubmit(event) {
+    debugger;
     event.preventDefault();
     let data = { userEmail, userName, userPassword };
     if (

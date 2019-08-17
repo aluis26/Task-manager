@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { Link } from 'react-router-dom';
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+import { Navbar, Nav, Button, Form } from "react-bootstrap";
+import logout from "./Logout";
 
 export default class NavigationBar extends Component {
   render() {
@@ -12,7 +12,16 @@ export default class NavigationBar extends Component {
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/signup">Signup</Nav.Link>
             <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-            <Nav.Link href="/dashboard">Log out</Nav.Link>
+            <Form inline>
+              <Button
+                variant="light"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Log Out
+              </Button>
+            </Form>
           </Nav>
         </Navbar>
       </div>

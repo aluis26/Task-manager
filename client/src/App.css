@@ -7,8 +7,12 @@
 .form,
 .signup-form {
   width: 30%;
-  margin: auto;
-  margin-top: 20vh;
+  /* margin: auto; */
+  margin: 10vh 15vh;
+  padding: 7vh;
+  border-radius: 3%;
+  background-color: #fdfbfb;
+  box-shadow: 14px 14px 25px -4px rgba(166, 166, 166, 0.78);
 }
 
 .headers {
@@ -63,9 +67,9 @@
   bottom: -1px;
   background-image: -moz-linear-gradient(
     top,
-    rgba(254, 200, 254, 1) 0%,
-    rgba(254, 200, 254, 1) 12%,
-    rgba(219, 119, 219, 1) 99%,
+    rgb(132, 201, 247) 0%,
+    rgb(207, 225, 248) 12%,
+    rgb(116, 158, 235) 99%,
     rgba(226, 226, 220, 2) 100%
   );
 }
@@ -112,4 +116,26 @@
 }
 .waveAnimation .waveBottom {
   animation: move_wave 15s linear infinite;
+}
+
+/*Validation form sign up*/
+
+.alert {
+  background-color: aquamarine;
+}
+
+/*Sign Up Page*/
+
+.backgroundColor {
+  /* margin-top: 10%; */
+  z-index: 1;
+  height: 110vh;
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+
+.imgSignUp {
+  margin: 15vh 10vh;
+  height: 60vh;
+  display: flex;
+  flex-wrap: wrap;
 }

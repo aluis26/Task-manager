@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import { signup } from "../api";
 import "./../App.css";
 import img from "./../assets/todo.svg";
+import Overlay from "react-bootstrap/Overlay";
 
 export default function Signup(props) {
   let [userName, setUserName] = useState("");
@@ -68,10 +69,11 @@ export default function Signup(props) {
   }
 
   return (
-    <div>
+    <div className="">
       <div className="d-inline-block">
         <img className="imgSignUp" src={img} alt="" />
       </div>
+
       <Form className="d-inline-block signup-form float-right">
         <h1>Sign Up Here!</h1>
         <br />
@@ -96,9 +98,7 @@ export default function Signup(props) {
               placeholder="Enter email"
               onChange={event => handleUserEmail(event)}
             />
-            {!isValidEmail ? (
-              <Alert variant="danger">That's not a valid email</Alert>
-            ) : null}
+            {!isValidEmail ? <div>That's not a valid email</div> : null}
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPassword">

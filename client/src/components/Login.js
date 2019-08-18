@@ -3,7 +3,10 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import { login } from "../api";
+import "./../App.css";
+
 // import isLoggedIn from "../helper";
+import img from "./../assets/girl-todo.svg";
 
 export default function Login(props) {
   let [userEmail, setUserEmail] = useState("");
@@ -38,8 +41,10 @@ export default function Login(props) {
 
   return (
     <div className="login-container">
-      {" "}
-      <Form className="form">
+      <div className="d-inline-block">
+        <img className="imgSignUp" src={img} alt="" />
+      </div>
+      <Form className="d-inline-block form float-right">
         <h1>Login to your account</h1>
         <br />
         <Form.Group controlId="formBasicEmail">

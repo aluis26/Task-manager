@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { editToDo } from "../api";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Modal from "react-bootstrap/Modal";
+import { Button, Form, Col, Container, Row, Modal } from "react-bootstrap";
 
 export default function ModalEdit(props) {
   var todo = props.todo;
@@ -59,7 +54,6 @@ export default function ModalEdit(props) {
     setEditDueDate(todo.dueDate.split("T")[0]);
     setEditStatus(todo.status);
     setTrigger(true);
-    debugger;
   }, [todo]);
 
   console.log(

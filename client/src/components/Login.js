@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
+import { Form, Button, Alert } from "react-bootstrap";
 import { login } from "../api";
 import "./../App.css";
-
-// import isLoggedIn from "../helper";
 import img from "./../assets/girl-todo.svg";
 
 export default function Login(props) {
@@ -87,6 +83,7 @@ export default function Login(props) {
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
+        Don't have an account? Sign up here!
       </Form>
     </div>
   );

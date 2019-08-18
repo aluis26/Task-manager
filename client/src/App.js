@@ -10,6 +10,8 @@ import { NavigationBarIn, NavigationBarOut } from "./components/NavigationBar";
 import PrivateRoute from "./components/PrivateRoute";
 import Logout from "./components/Logout";
 import isLoggedIn from "./helper";
+import backg from "./assets/backg.jpg";
+
 
 function App() {
   return (

@@ -18,10 +18,7 @@ export default function Quotes() {
 
   return (
     <React.Fragment>
-      <div className="quotes">
-        {quotes.body}
-      </div>
+      <div className="quotes">"{quotes.body}"</div>
     </React.Fragment>
-  )
+  );
 }
-

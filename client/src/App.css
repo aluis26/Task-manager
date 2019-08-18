@@ -32,7 +32,7 @@
 
 .quotes {
   margin: 0;
-  margin-top: 20%;
+  margin-top: 15%;
   padding: 2%;
   display: grid;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
@@ -72,9 +72,9 @@
   bottom: -1px;
   background-image: -moz-linear-gradient(
     top,
-    rgb(132, 201, 247) 0%,
-    rgb(207, 225, 248) 12%,
-    rgb(116, 158, 235) 99%,
+    rgba(254, 200, 254, 1) 0%,
+    rgba(254, 200, 254, 1) 12%,
+    rgba(219, 119, 219, 1) 99%,
     rgba(226, 226, 220, 2) 100%
   );
 }
@@ -122,7 +122,6 @@
 .waveAnimation .waveBottom {
   animation: move_wave 15s linear infinite;
 }
-
 /*Sign Up Page*/
 
 .backgroundColor {
@@ -152,12 +151,19 @@
     margin-right: 16vh;
     width: 60vh;
   }
+
+  .form {
+    margin-top: 15vh;
+    margin-right: 6vw;
+    width: 60vh;
+  }
 }
 
 @media screen and (max-width: 1450px) {
   .imgSignUp {
     width: 55vw;
     margin-left: 5vh;
+    margin-top: 19vh;
   }
 
   .signup-form {
@@ -165,6 +171,11 @@
     margin-top: 10vh;
     margin-right: 12vh;
     width: 65vh;
+  }
+  .form {
+    margin-top: 13vh;
+    margin-right: 6vw;
+    width: 60vh;
   }
 }
 
@@ -182,6 +193,12 @@
     float: center;
     width: 55vh;
   }
+
+  .form {
+    margin-top: 13vh;
+    margin-right: 6vw;
+    width: 60vh;
+  }
 }
 
 @media screen and (max-width: 770px) {
@@ -195,6 +212,12 @@
     width: 80vh;
     margin-right: 30vh;
   }
+
+  .form {
+    margin-top: 15vh;
+    margin-right: 25vw;
+    width: 60vh;
+  }
 }
 
 @media screen and (max-width: 440px) {
@@ -205,5 +228,11 @@
     float: center;
     margin-top: 8vh;
     margin-right: 5vh;
+  }
+
+  .form {
+    margin-top: 15vh;
+    margin-right: 10vw;
+    width: 55vh;
   }
 }

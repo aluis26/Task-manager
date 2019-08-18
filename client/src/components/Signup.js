@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 import { signup } from "../api";
 import "./../App.css";
 import img from "./../assets/todo.svg";
-import Overlay from "react-bootstrap/Overlay";
 
 export default function Signup(props) {
   let [userName, setUserName] = useState("");
@@ -17,7 +16,7 @@ export default function Signup(props) {
   let [isValidEmail, setIsValidEmail] = useState(true);
   let [isPassValid, setisPassValid] = useState(true);
   let [isSamePass, setIsSamePass] = useState(true);
-
+  const Swal = require("sweetalert2");
   function handleUserName(event) {
     setUserName(event.target.value);
   }
@@ -44,11 +43,18 @@ export default function Signup(props) {
     let data = { userEmail, userName, userPassword };
     if (
       userPassword === userConfirmPassword &&
-      userPassword.length > 6 &&
+      userPassword.length >= 6 &&
       validateUserEmail(userEmail) &&
       userName
     ) {
       signup(data).then(() => {
+        Swal.fire({
+          // title: "Error!",
+          text:
+            "Your account has been created. Please log in to start using the websites",
+          type: "success",
+          confirmButtonText: "Cool"
+        });
         props.history.push("/login");
       });
       //to do - multiple error msgs
@@ -69,7 +75,7 @@ export default function Signup(props) {
   }
 
   return (
-    <div className="">
+    <div>
       <div className="d-inline-block">
         <img className="imgSignUp" src={img} alt="" />
       </div>

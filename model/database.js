@@ -44,13 +44,13 @@ con.connect(function(err) {
   });
 
   // ADD A TEST FAKE TODO TO THE TODOS TABLE
-  // sql =
-  //   "INSERT INTO todos (task, priority, status, dueDate, userId) VALUES ('test task todo', 1, 1, '2020-12-12', 1);";
-  // con.query(sql, function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Creation of task was successful!");
-  // });
-  // console.log("Closing...");
+  sql =
+    "INSERT INTO todos (task, priority, status, dueDate, userId) VALUES ('test task todo', 1, 1, '2020-12-12', 1);";
+  con.query(sql, function(err, result) {
+    if (err) throw err;
+    console.log("Creation of task was successful!");
+  });
+  console.log("Closing...");
 
   con.end();
 });

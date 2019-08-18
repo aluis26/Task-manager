@@ -96,7 +96,11 @@ export default function TodoList() {
               </Col>
               <Col xs>{libraryStatus(todo.status)}</Col>
               <Col xs>{libraryPriority(todo.priority)}</Col>
+<<<<<<< HEAD
               <Col xs>{todo.dueDate ? todo.dueDate.split("T")[0] : null}</Col>
+=======
+              <Col xs>{todo.dueDate[0]}</Col>
+>>>>>>> efdd854a002455b4b191d9d0edb2668d9de79602
               <Col xs>
                 <Button
                   type="submit"

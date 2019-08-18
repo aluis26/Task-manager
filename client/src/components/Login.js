@@ -82,7 +82,11 @@ export default function Login(props) {
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
-        Don't have an account? Sign up here!
+        <div>
+          Don't have an account?
+          <br />
+          <a href="/signup">Sign up here</a>
+        </div>
       </Form>
     </div>
   );

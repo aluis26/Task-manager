@@ -6,37 +6,19 @@ import Dashboard from "./components/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import NavigationBar from "./components/NavigationBar";
+import { NavigationBarIn, NavigationBarOut } from "./components/NavigationBar";
 import PrivateRoute from "./components/PrivateRoute";
 import Logout from "./components/Logout";
+import isLoggedIn from "./helper";
 import backg from "./assets/backg.jpg";
 
+
 function App() {
-  let [triggerNav, setTriggerNav] = useState(false);
-
-  // function refresh() {
-  //   setRefreshNav(refreshNav + 1);
-  //   console.log(refreshNav, "counter");
-  // }
-
-  function navigationBar() {
-    if (localStorage.getItem("accessToken") != null) {
-      setTriggerNav(true);
-    }
-  }
-
-  // useEffect(() => {
-  //   refreshBar();
-  // }, );
-
-  useEffect(() => {
-    navigationBar();
-  });
-
   return (
     <div className="App backgroundColor">
       <BrowserRouter>
-        <NavigationBar triggerNav={triggerNav} />
+        {/* {isLoggedIn() && <NavigationBarIn />}
+        {!isLoggedIn() && <NavigationBarOut />} */}
 
         <Switch>
           <Route exact path="/" component={Login} />

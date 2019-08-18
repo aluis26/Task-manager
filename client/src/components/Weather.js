@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import { WiDaySunny, WiCloudy } from "weather-icons-react";
 
 export default function Weather() {
   let [weather, setWeather] = useState({
@@ -47,6 +46,7 @@ export default function Weather() {
         bg="transparent"
         border="none"
         style={{ width: "18rem" }}
+
         className="float-right text-center weather"
       >
         <Card.Body>

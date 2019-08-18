@@ -70,7 +70,6 @@ export default function Login(props) {
             ) : null}
           </Form.Text>
         </Form.Group>
-
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -83,7 +82,11 @@ export default function Login(props) {
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
-        Don't have an account? Sign up here!
+        <div>
+          Don't have an account?
+          <br />
+          <a href="/signup">Sign up here</a>
+        </div>
       </Form>
     </div>
   );

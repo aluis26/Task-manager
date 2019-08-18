@@ -1,8 +1,5 @@
 import React, { useState, useRef } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
-import Col from "react-bootstrap/Col";
+import { Form, Button, Alert, Col } from "react-bootstrap";
 import { signup } from "../api";
 import "./../App.css";
 import img from "./../assets/todo.svg";

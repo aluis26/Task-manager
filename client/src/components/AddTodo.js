@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { addToDo } from "../api";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
+import { Button, Form, Col, Container } from "react-bootstrap";
 
 export default function AddTodo(props) {
   let [task, setTask] = useState("");

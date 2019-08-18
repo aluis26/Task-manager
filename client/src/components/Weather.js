@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
+import { WiDaySunny, WiCloudy } from 'weather-icons-react'
 
 export default function Weather() {
     let [weather, setWeather] = useState({
@@ -23,10 +24,18 @@ export default function Weather() {
                 })
             );
     }
-    console.log(weather);
+    // console.log(weather);
     let newWeather = Object.values(weather)
-    console.log(newWeather)
+    // console.log(newWeather)
     // console.log(newWeather[0][1])
+
+    // function weatherIcons() {
+    //     let weatherDesc = newWeather[2]
+    //     if (weatherDesc === 'few clouds' || 'clouds' || 'cloudy') {
+    //         return <WiCloudy size={24} color='#000' />
+    //     }
+    //     return <WiDaySunny size={24} color='#000' />
+    // }
 
     useEffect(() => {
         getWeather();
@@ -34,10 +43,13 @@ export default function Weather() {
 
     return (
         <div>
-            <Card style={{ width: "18rem" }} className="float-right text-center">
+            <Card bg="transparent" border="none" style={{ width: "18rem" }} className="float-right text-center ">
                 <Card.Body>
                     <Card.Title>{newWeather[1] + ','} {newWeather[3]}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Date</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 text-muted">
+                        {/* <i className="fas fa-cloud-sun" size={30} /> */}
+                        <WiCloudy size={30} color='#000' />
+                    </Card.Subtitle>
                     <Card.Text>
                         {newWeather[0] + ' ºC'} <br />
                         {newWeather[2]}

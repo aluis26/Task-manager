@@ -18,8 +18,7 @@ function App() {
   // }
 
   function navigationBar() {
-    console.log(localStorage.getItem("accessToken"), "runs");
-    debugger;
+    // console.log(localStorage.getItem("accessToken"), "runs");
     if (localStorage.getItem("accessToken") != null) {
       setTriggerNav(true);
     }

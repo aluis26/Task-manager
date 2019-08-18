@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { showToDo, deleteToDo } from "../api";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import ModalEdit from "./ModalEdit";
 import AddTodo from "./AddTodo";
 
@@ -48,7 +45,7 @@ export default function TodoList() {
     console.log(id);
     deleteToDo(id).then(response => {
       console.log("message", response);
-      showToDo().then(function(response) {
+      showToDo().then(function (response) {
         console.log("message", response);
         setTodoList(response.data.result);
       });
@@ -56,7 +53,7 @@ export default function TodoList() {
   }
 
   function fetchTodos() {
-    showToDo().then(function(response) {
+    showToDo().then(function (response) {
       setTodoList(response.data.result);
     });
   }
@@ -88,7 +85,7 @@ export default function TodoList() {
           <Col xs />
           <Col xs />
         </Row>
-        {todoList.map(function(todo) {
+        {todoList.map(function (todo) {
           return (
             <Row>
               <Col xs={6} md={0}>
@@ -100,7 +97,7 @@ export default function TodoList() {
               <Col xs>
                 <Button
                   type="submit"
-                  onClick={function() {
+                  onClick={function () {
                     setSelectedTodo(todo);
                     setModalShow(true);
                   }}

@@ -81,7 +81,7 @@ export default function Login(props) {
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
-        </Button>
+        </Button><br />
         Don't have an account? Sign up here!
       </Form>
     </div>

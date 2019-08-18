@@ -9,6 +9,7 @@ import Signup from "./components/Signup";
 import NavigationBar from "./components/NavigationBar";
 import PrivateRoute from "./components/PrivateRoute";
 import Logout from "./components/Logout";
+import backg from "./assets/backg.jpg";
 
 function App() {
   let [triggerNav, setTriggerNav] = useState(false);

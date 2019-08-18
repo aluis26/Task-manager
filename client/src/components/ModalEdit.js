@@ -140,10 +140,12 @@ export default function ModalEdit(props) {
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" onClick={handleSubmitEdit}>
-            Submit
+          <Button type="submit" variant="info" onClick={handleSubmitEdit}>
+            <i className="fas fa-check" />
           </Button>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button variant="info" onClick={props.onHide}>
+            <i className="fas fa-times" />
+          </Button>
         </Modal.Footer>
       </Modal>
     );

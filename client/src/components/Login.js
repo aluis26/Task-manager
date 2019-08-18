@@ -70,7 +70,6 @@ export default function Login(props) {
             ) : null}
           </Form.Text>
         </Form.Group>
-
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control

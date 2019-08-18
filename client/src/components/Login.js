@@ -12,6 +12,7 @@ export default function Login(props) {
   let [userEmail, setUserEmail] = useState("");
   let [userPassword, setUserPassword] = useState("");
   let [isValidated, setIsValidated] = useState(true);
+  const Swal = require("sweetalert2");
 
   function handleChangeEmail(event) {
     setUserEmail(event.target.value);
@@ -32,8 +33,20 @@ export default function Login(props) {
     event.preventDefault();
     let data = { userEmail, userPassword };
     if (validateUserEmail(userEmail)) {
-      login(data).then(() => props.history.push("/dashboard"));
-      // props.refreshNav();
+      login(data).then(result => {
+        console.log(result, "result");
+        if (result === undefined) {
+          Swal.fire({
+            // title: "Error!",
+            text: "Incorrect Password or Email",
+            type: "error",
+            confirmButtonText: "Try Again"
+          });
+        } else {
+          localStorage.setItem("accessToken", result.data.accessToken);
+          props.history.push("/dashboard");
+        }
+      });
     } else {
       setIsValidated(false);
     }

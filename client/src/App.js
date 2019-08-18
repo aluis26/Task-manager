@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import NavigationBar from "./components/NavigationBar";
 import PrivateRoute from "./components/PrivateRoute";
+import Logout from "./components/Logout";
 
 function App() {
   let [triggerNav, setTriggerNav] = useState(false);
@@ -19,7 +20,6 @@ function App() {
 
   function navigationBar() {
     console.log(localStorage.getItem("accessToken"), "runs");
-    debugger;
     if (localStorage.getItem("accessToken") != null) {
       setTriggerNav(true);
     }
@@ -43,6 +43,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/dashboard" component={Logout} />
         </Switch>
       </BrowserRouter>
     </div>

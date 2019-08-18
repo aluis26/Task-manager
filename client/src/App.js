@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
@@ -10,10 +10,34 @@ import NavigationBar from "./components/NavigationBar";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
+  let [triggerNav, setTriggerNav] = useState(false);
+
+  // function refresh() {
+  //   setRefreshNav(refreshNav + 1);
+  //   console.log(refreshNav, "counter");
+  // }
+
+  function navigationBar() {
+    console.log(localStorage.getItem("accessToken"), "runs");
+    debugger;
+    if (localStorage.getItem("accessToken") != null) {
+      setTriggerNav(true);
+    }
+  }
+
+  // useEffect(() => {
+  //   refreshBar();
+  // }, );
+
+  useEffect(() => {
+    navigationBar();
+  });
+
   return (
     <div className="App backgroundColor">
       <BrowserRouter>
-        <NavigationBar />
+        <NavigationBar triggerNav={triggerNav} />
+
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/login" component={Login} />

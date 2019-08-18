@@ -30,6 +30,7 @@ export default function Login(props) {
     let data = { userEmail, userPassword };
     if (validateUserEmail(userEmail)) {
       login(data).then(() => props.history.push("/dashboard"));
+      // props.refreshNav();
     } else {
       setIsValidated(false);
     }

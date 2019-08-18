@@ -1,18 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 // import { Link } from 'react-router-dom';
 import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import logout from "./Logout";
 
-export default class NavigationBar extends Component {
-  render() {
-    return (
-      <div>
-        <Navbar bg="light">
-          <Nav className="mr-auto">
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/signup">Signup</Nav.Link>
-            <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-            <Form inline>
+export default function NavigationBar(props) {
+  // console.log(localStorage.getItem("accessToken"), "token render in navbar");
+  return (
+    <div>
+      <Navbar bg="light">
+        <Nav className="mr-auto">
+          {!props.triggerNav && <Nav.Link href="/login">Login</Nav.Link>}
+          {!props.triggerNav && <Nav.Link href="/signup">Signup</Nav.Link>}
+          <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+          <Form inline>
+            {props.triggerNav && (
               <Button
                 variant="light"
                 onClick={() => {
@@ -21,10 +22,10 @@ export default class NavigationBar extends Component {
               >
                 Log Out
               </Button>
-            </Form>
-          </Nav>
-        </Navbar>
-      </div>
-    );
-  }
+            )}
+          </Form>
+        </Nav>
+      </Navbar>
+    </div>
+  );
 }

@@ -46,7 +46,6 @@ export default function Weather() {
         bg="transparent"
         border="none"
         style={{ width: "18rem" }}
-
         className="float-right text-center weather"
       >
         <Card.Body>
@@ -55,7 +54,6 @@ export default function Weather() {
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             {/* <i className="fas fa-cloud-sun" size={30} /> */}
-            <WiCloudy size={30} color="#000" />
           </Card.Subtitle>
           <Card.Text>
             {newWeather[0] + " ºC"} <br />

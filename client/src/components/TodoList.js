@@ -11,7 +11,7 @@ export default function TodoList() {
 
   function libraryPriority(prio) {
     let library = [["High", 1], ["Medium", 2], ["Low", 3]];
-    let x = "";
+    let x;
 
     if (prio == x) {
       return undefined;

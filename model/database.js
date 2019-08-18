@@ -14,7 +14,7 @@ const con = mysql.createConnection({
   multipleStatements: true
 });
 
-con.connect(function (err) {
+con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
   let sql = "";
@@ -22,23 +22,23 @@ con.connect(function (err) {
   // CREATE THE USERS TABLE
   sql =
     "DROP TABLE if exists users; CREATE TABLE users(id INT NOT NULL AUTO_INCREMENT, userName VARCHAR(255) not null, userEmail VARCHAR(255), userPassword VARCHAR(255), PRIMARY KEY (id));";
-  con.query(sql, function (err, result) {
+  con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Table creation `users` was successful!");
   });
 
   // ADD A TEST FAKE USER TO THE USERS TABLE
-  // sql =
-  //   "INSERT INTO users (userName, userEmail, userPassword) VALUES ('test', 'test@test.com', 'test');";
-  // con.query(sql, function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Creation of 'test' user was successful!");
-  // });
+  sql =
+    "INSERT INTO users (userName, userEmail, userPassword) VALUES ('test', 'test@test.com', 'test');";
+  con.query(sql, function(err, result) {
+    if (err) throw err;
+    console.log("Creation of 'test' user was successful!");
+  });
 
   //ADD TODOS TABLE
   sql =
     "DROP TABLE if exists todos; CREATE TABLE todos(id INT(11) NOT NULL AUTO_INCREMENT, task VARCHAR(255) not null, priority INT(1), status INT(1), dueDate DATE NOT NULL, userId INT(11), PRIMARY KEY (id));";
-  con.query(sql, function (err, result) {
+  con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Table creation `todo` was successful!");
   });

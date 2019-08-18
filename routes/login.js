@@ -9,10 +9,9 @@ router.post("/", function(req, res, next) {
   // store the inputs in variables easy to use:
   var email = req.body.userEmail;
   var password = req.body.userPassword;
- 
 
   // find the user
-  db(`SELECT * FROM users WHERE userEmail = ('${email}') ;`).then(
+  db("SELECT * FROM users WHERE userEmail = '" + email + "';").then(
     resultUser => {
       console.log("result User \n", resultUser.data[0]);
       if (resultUser.data[0].userEmail != email) {
@@ -25,7 +24,7 @@ router.post("/", function(req, res, next) {
         // if the user exists check the password
       } else {
         db(
-          `SELECT userPassword FROM users WHERE userEmail = ('${email}');`
+          "SELECT userPassword FROM users WHERE userEmail = '" + email + "';"
         ).then(resultPassword => {
           console.log("user password", resultPassword.data[0]);
           if (resultPassword.data[0].userPassword != password) {

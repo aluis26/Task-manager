@@ -2,28 +2,36 @@ import React from "react";
 // import { Link } from 'react-router-dom';
 import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import logout from "./Logout";
+import isLoggedIn from "../helper";
 
-export default function NavigationBar(props) {
-  // console.log(localStorage.getItem("accessToken"), "token render in navbar");
+export function NavigationBarOut() {
   return (
     <div>
       <Navbar bg="light">
         <Nav className="mr-auto">
-          {!props.triggerNav && <Nav.Link href="/login">Login</Nav.Link>}
-          {!props.triggerNav && <Nav.Link href="/signup">Signup</Nav.Link>}
-          <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link href="/signup">Signup</Nav.Link>
+        </Nav>
+      </Navbar>
+    </div>
+  );
+}
+
+export function NavigationBarIn() {
+  return (
+    <div>
+      <Navbar bg="light">
+        <Nav className="mr-auto">
           <Form inline>
-            {props.triggerNav && (
-              <Button
-                variant="light"
-                href="/dashboard"
-                onClick={() => {
-                  logout();
-                }}
-              >
-                Log Out
-              </Button>
-            )}
+            <Button
+              variant="light"
+              href="/dashboard"
+              onClick={() => {
+                logout();
+              }}
+            >
+              Log Out
+            </Button>
           </Form>
         </Nav>
       </Navbar>

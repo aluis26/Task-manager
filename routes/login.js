@@ -22,36 +22,29 @@ router.post("/", function(req, res, next) {
         });
 
         // if the user exists check the password
+      }
+      if (resultUser.data[0].userPassword != password) {
+        res.status(401).json({
+          code: "401",
+          message: "wrong email or password"
+        });
       } else {
-        db(
-          "SELECT userPassword FROM users WHERE userEmail = '" + email + "';"
-        ).then(resultPassword => {
-          console.log("user password", resultPassword.data[0]);
-          if (resultPassword.data[0].userPassword != password) {
-            res.status(401).json({
-              code: "401",
-              message: "wrong email or password"
-            });
-
-            // if password is also correct generate and send a token.
-          }
+        // if password is also correct generate and send a token.
+        var token = jwt.sign(
+          {
+            userId: resultUser.data[0].id
+          },
+          superSecret
+          // {
+          //   expiresInMinutes: 1440 // expires in 24 hours
+          // }
+        );
+        // return the information including token as JSON
+        return res.json({
+          accessToken: token,
+          message: "here is your token"
         });
       }
-
-      var token = jwt.sign(
-        {
-          userId: resultUser.data[0].id
-        },
-        superSecret
-        // {
-        //   expiresInMinutes: 1440 // expires in 24 hours
-        // }
-      );
-      // return the information including token as JSON
-      return res.json({
-        accessToken: token,
-        message: "here is your token"
-      });
     }
   );
 });

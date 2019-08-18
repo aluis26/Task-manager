@@ -137,15 +137,7 @@
   margin: 0;
   width: 100%;
   height: 120vh;
-  background: linear-gradient(
-    -45deg,
-    #5aabcb,
-    #99a2c9,
-    #7a74c7,
-    #b1e4f0,
-    #fcbee8
-  );
-  background-size: 800% 400%;
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
 }
 
 .imgSignUp {
@@ -254,13 +246,18 @@
   }
 }
 
-.addnew-container {
+.addTodo-container {
   /* margin: 20%; */
   width: 80%;
-  background-color: #fdfbfb;
+  /* background-color: #fdfbfb; */
   display: block;
   margin-top: 0;
-  margin-left: 10px !important;
+  margin-left: -30px !important;
+  padding: 0;
+}
+
+.addnew-container {
+  margin-left: -30px !important;
 }
 
 .add-button {
@@ -272,7 +269,7 @@
   width: 50%;
   margin-bottom: 10vh;
   background-color: #e9e9e9;
-  margin-left: 10px !important;
+  margin-left: -30px !important;
 }
 
 .each-task {
@@ -327,5 +324,6 @@
 
 .col {
   padding: 0 !important;
-  width: 5vh;
+  font-size: 0.9em;
+  margin-right: 1vh;
 }

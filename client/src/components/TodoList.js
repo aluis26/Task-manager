@@ -11,34 +11,34 @@ export default function TodoList() {
 
   function libraryPriority(prio) {
     let library = [["High", 1], ["Medium", 2], ["Low", 3]];
-    let x;
+    let x = "";
 
-    //   if (prio == x) {
-    //     return undefined;
-    //   }
-    //   if (typeof prio == "number") {
-    //     x = library.filter(e => e[1] === prio);
-    //     return x[0][0];
-    //   } else {
-    //     x = library.filter(e => e[0] === prio);
-    //     return x[0][1];
-    //   }
+    if (prio == x) {
+      return undefined;
+    }
+    if (typeof prio == "number") {
+      x = library.filter(e => e[1] === prio);
+      return x[0][0];
+    } else {
+      x = library.filter(e => e[0] === prio);
+      return x[0][1];
+    }
   }
 
   function libraryStatus(stat) {
     let library = [["Undone", 0], ["Done", 1]];
     let x;
 
-    // if (stat == x) {
-    //   return undefined;
-    // }
-    // if (typeof stat === "number") {
-    //   x = library.filter(e => e[1] === stat);
-    //   return x[0][0];
-    // } else {
-    //   x = library.filter(e => e[0] === stat);
-    //   return x[0][1];
-    // }
+    if (stat == x) {
+      return undefined;
+    }
+    if (typeof stat == "number") {
+      x = library.filter(e => e[1] === stat);
+      return x[0][0];
+    } else {
+      x = library.filter(e => e[0] === stat);
+      return x[0][1];
+    }
   }
 
   function handleDelete(id) {
@@ -74,11 +74,11 @@ export default function TodoList() {
       />
       <Container
         className=" todo-container float-left opac"
-        style={{ width: "60vw" }}
+        style={{ width: "65vw" }}
       >
         <h3 className="headers">My todo list:</h3>
         <Row className="table-description">
-          <Col xs={6} md={5}>
+          <Col xs={6} md={6}>
             Task description:
           </Col>
           <Col xs={1} md={1}>
@@ -87,7 +87,7 @@ export default function TodoList() {
           <Col xs={1} md={1}>
             Priority:
           </Col>
-          <Col xs={2} md={5}>
+          <Col xs={2} md={4}>
             Due date:
           </Col>
           <Col xs />

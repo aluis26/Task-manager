@@ -16,6 +16,7 @@ export default function NavigationBar(props) {
             {props.triggerNav && (
               <Button
                 variant="light"
+                href="/dashboard"
                 onClick={() => {
                   logout();
                 }}

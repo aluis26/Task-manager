@@ -24,10 +24,8 @@ export default function Weather() {
                 })
             );
     }
-    // console.log(weather);
+
     let newWeather = Object.values(weather);
-    // console.log(newWeather)
-    // console.log(newWeather[0][1])
 
     // function weatherIcons() {
     //     let weatherDesc = newWeather[2]

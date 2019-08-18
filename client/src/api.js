@@ -14,11 +14,7 @@ export function login(data) {
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
     data: data // body data type must match "Content-Type" header
-  })
-    .then(result => {
-      localStorage.setItem("accessToken", result.data.accessToken);
-    })
-    .catch(err => console.log(err));
+  }).catch(err => console.log(err));
 }
 
 export function signup(data) {

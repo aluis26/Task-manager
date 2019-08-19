@@ -77,7 +77,10 @@ export default function TodoList() {
         style={{ width: "65vw" }}
       >
         <h3 className="headers">My todo list:</h3>
-        <Row className="table-description">
+        <Row
+          className="table-description"
+          style={{ fontSize: "1.1em", fontWeight: "600" }}
+        >
           <Col xs={6} md={6}>
             Task description:
           </Col>

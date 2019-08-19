@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
+// import { WiDaySunny, WiCloudy } from "weather-icons-react";
 
 export default function Weather() {
     let [weather, setWeather] = useState({
@@ -25,6 +26,12 @@ export default function Weather() {
     }
 
     let newWeather = Object.values(weather);
+    // function icons() {
+    //     if (newWeather[2] == 'few clouds' || 'clouds') {
+    //         return 'http://openweathermap.org/img/wn/02d@2x.png'
+    //     }
+    //     return 'http://openweathermap.org/img/wn/10d@2x.png'
+    // }
 
     // function weatherIcons() {
     //     let weatherDesc = newWeather[2]
@@ -46,8 +53,8 @@ export default function Weather() {
                         {newWeather[1] + ","} {newWeather[3]}
                     </Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
-                        {/* <i className="fas fa-cloud-sun" size={30} /> */}
-                        <WiCloudy size={30} color="#000" />
+                        <i className="fas fa-cloud-sun" size={30} />
+                        {/* <WiCloudy size={30} color="#000" /> */}
                     </Card.Subtitle>
                     <Card.Text>
                         {newWeather[0] + " ºC"} <br />

@@ -90,7 +90,6 @@ export default function Signup(props) {
             />
           </Form.Group>
         </Form.Row>
-
         <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Email</Form.Label>
@@ -138,6 +137,10 @@ export default function Signup(props) {
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Sign Up!
         </Button>
+        <div>
+          Do you have aleady an account? <br />
+          <a href="/login">Log in here</a>
+        </div>
       </Form>
     </div>
   );

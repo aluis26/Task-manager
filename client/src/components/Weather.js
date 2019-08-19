@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import { WiDaySunny, WiCloudy } from "weather-icons-react";
 
 export default function Weather() {
     let [weather, setWeather] = useState({

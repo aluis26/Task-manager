@@ -29,6 +29,9 @@
     "sweetalert2": "^8.16.1",
     "uuid": "^3.3.2"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "description": "[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)\r FS3 Cohort final project",
   "main": "app.js",
   "devDependencies": {},

@@ -1,8 +1,7 @@
 .App {
   text-align: left;
   font-family: "Open Sans", sans-serif;
-  /* background-image: url("assets/backg.jpg") !important; */
-}
+ }
 
 /*Login and Signup Form*/
 
@@ -34,13 +33,13 @@
 
 .quotes {
   margin: 0;
-  position: fixed;
+  margin-top: 10vh;
+  
   bottom: 2px;
   right: 2px;
   padding: 2%;
-  display: inline;
   background-color: #aee1e6;
-  width: 30vw;
+ 
   justify-items: center;
   border-radius: 0.5em;
   box-shadow: 18px 17px 36px -9px rgba(176, 176, 176, 0.74);
@@ -51,12 +50,12 @@
 /*Sign Up Page*/
 
 .backgroundColor {
-  /* margin-top: 10%; */
   z-index: 1;
   height: 160vh;
   margin: 0;
-  width: 100%;
-  height: 120vh;
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
   background-image: linear-gradient(-225deg, #b7f8db 0%, #50a7c2 100%);
 }
 
@@ -75,7 +74,6 @@
   }
 
   .signup-form {
-    /* width: 100vh; */
     margin-top: 27vh;
     margin-right: 16vh;
     width: 60vh;
@@ -116,7 +114,6 @@
   }
 
   .signup-form {
-    /* width: 100vh; */
     margin-top: 13vh;
     margin-right: 10vh;
     float: center;
@@ -166,85 +163,26 @@
   }
 }
 
-.addTodo-container {
-  /* margin: 20%; */
-  width: 80%;
-  /* background-color: #fdfbfb; */
-  display: block;
-  margin-top: 0;
-  margin-left: -30px !important;
-  padding: 0;
-}
-
-.addnew-container {
-  margin-left: -30px !important;
-}
-
-.add-button {
-  margin-top: 5vh;
-}
-
-.todo-container {
-  display: block;
-  width: 50%;
-  margin-bottom: 10vh;
-  background-color: #e9e9e9;
-  margin-left: -30px !important;
-}
-
-.each-task {
-  margin: 4vh;
-}
 
 /*Weather*/
 
-.weather {
+ .weather {
   margin-top: 17vh;
-}
+} 
 
-.inputAdd {
-  padding: 20px;
-  margin: 0;
-  width: 600px;
-  height: auto;
-  background: rgb(223, 223, 223);
-  border-radius: 4px;
-  box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25);
-  outline: none;
-  border: none;
-  font-size: 1em;
-}
-.addBtn {
-  margin-top: 5vh;
-  box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25);
-}
-
-.addTodo-container {
-  margin-bottom: 10vh;
-}
-
-.opac {
+.background-container {
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 5px;
+  width:100%;
+  padding:5vh;
+margin: 0;
   color: #333;
   font-family: system-ui, sans-serif;
   line-height: 1.5;
-  max-width: 50%;
-  padding: 1rem 2rem;
+  /* padding: 1rem 2rem; */
 }
 
-@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-  .opac {
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-}
+.inputAdd{
+  box-shadow: 18px 17px 36px -9px rgba(176, 176, 176, 0.74);
 
-/*TODO LIST*/
-
-.col {
-  padding: 0 !important;
-  font-size: 0.9em;
-  margin-right: 1vh;
 }

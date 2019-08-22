@@ -25,26 +25,26 @@ export default function TodoList() {
   }
 
   function libraryStatus(stat) {
-    let library = [["Undone", 0], ["Done", 1]];
-    let x = "";
-
-    if (stat == x) {
+    if (stat === undefined) {
       return undefined;
     }
+
+    let library = [["Undone", 0], ["Done", 1]];
+
     if (typeof stat == "number") {
-      x = library.filter(e => e[1] === stat);
-      return x[0][0];
+      return library.filter(e => e[1] === stat)[0][0];
     } else {
-      x = library.filter(e => e[0] === stat);
-      return x[0][1];
+      return library.filter(e => e[0] === stat)[0][1];
     }
   }
+
+
 
   function handleDelete(id) {
     console.log(id);
     deleteToDo(id).then(response => {
       console.log("message", response);
-      showToDo().then(function(response) {
+      showToDo().then(function (response) {
         console.log("message", response);
         setTodoList(response.data.result);
       });
@@ -52,7 +52,7 @@ export default function TodoList() {
   }
 
   function fetchTodos() {
-    showToDo().then(function(response) {
+    showToDo().then(function (response) {
       setTodoList(response.data.result);
     });
   }
@@ -96,7 +96,7 @@ export default function TodoList() {
           <Col xs />
         </Row>
 
-        {todoList.map(function(todo) {
+        {todoList.map(function (todo) {
           return (
             <Row>
               <Col xs={6} md={0}>
@@ -111,7 +111,7 @@ export default function TodoList() {
                 <Button
                   variant="info"
                   type="submit"
-                  onClick={function() {
+                  onClick={function () {
                     setSelectedTodo(todo);
                     setModalShow(true);
                   }}

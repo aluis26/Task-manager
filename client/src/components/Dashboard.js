@@ -5,8 +5,6 @@ import Weather from './Weather';
 import Container from 'react-bootstrap/Container';
 import { NavigationBarIn } from './NavigationBar';
 import { Col, Row } from "react-bootstrap";
-import AddTodo from "./AddTodo";
-
 
 export default function Dashboard() {
   return (

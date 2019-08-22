@@ -12,12 +12,10 @@ export default function Login(props) {
 
   function handleChangeEmail(event) {
     setUserEmail(event.target.value);
-    console.log("userEmail-", event.target.value);
   }
 
   function handleChangePassword(event) {
     setUserPassword(event.target.value);
-    console.log("userPassword-", event.target.value);
   }
 
   function validateUserEmail(userEmail) {
@@ -49,7 +47,7 @@ export default function Login(props) {
   }
 
   return (
-    <div className="login-container">
+    <div className="forms-container">
       <div className="d-inline-block">
         <img className="imgSignUp" src={img} alt="" />
       </div>

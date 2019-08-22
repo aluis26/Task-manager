@@ -82,7 +82,7 @@ export default function AddTodo(props) {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    <i class="fas fa-plus" />
+                    <i className="fas fa-plus" />
                   </Button>
                 </Row>
               </Form.Group>

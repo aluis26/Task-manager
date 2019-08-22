@@ -71,7 +71,7 @@ export default function TodoList() {
         libraryPriority={libraryPriority} />
 
       <Container
-        style={{ marginBottom: "10vh" }}
+        style={{ marginBottom: "10vh", backgroundColor: "#aee1e6" }}
         className=" background-container"
       >
         <h3 className="headers">My todo list:</h3>
@@ -97,8 +97,8 @@ export default function TodoList() {
 
         {todoList.map(function (todo) {
           return (
-            <Row float-center style={{ fontSize: "0.8em" }}>
-              <Col xs={3} md={3}>
+            <Row key={todo.id} style={{ fontSize: "0.8em" }}>
+              <Col xs={3} md={3} >
                 {todo.task}
                 <hr />
               </Col>
@@ -121,6 +121,7 @@ export default function TodoList() {
                 {selectedTodo && (
                   <ModalEdit
                     show={modalShow}
+
                     todo={selectedTodo}
                     onHide={() => setModalShow(false)}
                     updateTodos={updateTodos}
@@ -135,7 +136,7 @@ export default function TodoList() {
                     handleDelete(todo.id);
                   }}
                 >
-                  <i class="far fa-trash-alt" />
+                  <i className="far fa-trash-alt" />
                 </Button>
               </Col>
               <Row >

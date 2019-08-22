@@ -37,7 +37,8 @@
     "url": "git+https://github.com/aluis26/fs3_w8-10_final-project.git"
   },
   "engines": {
-    "node": "10.x"
+    "node": "10.x",
+    "yarn": "1.16.0"
   },
   "keywords": [],
   "author": "",

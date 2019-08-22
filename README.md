@@ -274,7 +274,7 @@ git push origin staging
 - Setting up a FREE MySQL DB requires to enter a credit card in your account. Go to `https://dashboard.heroku.com/account/billing` and hit **Add Credit Card**
 - You can now add a MySQL add-on to your heroku project. Run `heroku addons:create cleardb:ignite`
 - Make sure to read the docs: `https://devcenter.heroku.com/articles/cleardb`
-- Retrieve your DB URL: `heroku config | grep CLEARDB_DATABASE_URL`
+- Retrieve your DB URL: `heroku config | findstr CLEARDB_DATABASE_URL` 7a9fffca@us-cdbr-iron-east-02.cleardb.net
 - Copy the value and run: `heroku config:set DATABASE_URL='YOUR_VALUE'`
 - This is a string in the form of: `mysql://user:pass@host/database`
 - You can use those credentials in your .env file if you want to use this production DB in your dev localhost environment, for example:

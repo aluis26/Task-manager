@@ -82,7 +82,7 @@ export default function ModalEdit(props) {
         <Modal.Body>
           <Container>
             <Row className="show-grid">
-              <Col xs={6} md={6}>
+              <Col xs={8} md={8}>
                 <Form.Group as={Col} controlId="formGridTask">
                   <Form.Label>Todo task</Form.Label>
                   <Form.Control
@@ -92,7 +92,7 @@ export default function ModalEdit(props) {
                   />
                 </Form.Group>
               </Col>
-              <Col xs={2} md={2}>
+              <Col xs={4} md={4}>
                 <Form.Group as={Col} controlId="formGridTask">
                   <Form.Label>Priority</Form.Label>
                   <Form.Control
@@ -108,7 +108,9 @@ export default function ModalEdit(props) {
                   </Form.Control>
                 </Form.Group>
               </Col>
-              <Col xs={2} md={2}>
+            </Row>
+            <Row>
+              <Col xs={8} md={8}>
                 <Form.Group as={Col} controlId="formGridTask">
                   <Form.Label>Due Date:</Form.Label>
                   <Form.Control
@@ -119,9 +121,7 @@ export default function ModalEdit(props) {
                   />
                 </Form.Group>
               </Col>
-            </Row>
-            <Row>
-              <Col xs={2} md={2}>
+              <Col xs={4} md={4}>
                 <Form.Group as={Col} controlId="formGridTask">
                   <Form.Label>Status</Form.Label>
                   <Form.Control

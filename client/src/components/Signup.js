@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Form, Button, Alert, Col } from "react-bootstrap";
 import { signup } from "../api";
 import "./../App.css";
@@ -72,7 +72,7 @@ export default function Signup(props) {
 
   return (
     <div>
-      <div className="d-inline-block">
+      <div className="d-inline-block forms-container">
         <img className="imgSignUp" src={img} alt="" />
       </div>
 
@@ -138,7 +138,7 @@ export default function Signup(props) {
           Sign Up!
         </Button>
         <div>
-          Do you have aleady an account? <br />
+          Do you have already an account? <br />
           <a href="/login">Log in here</a>
         </div>
       </Form>

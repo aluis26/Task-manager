@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 // import { WiDaySunny, WiCloudy } from "weather-icons-react";
+import Col from "react-bootstrap/Col"
 
 export default function Weather() {
     let [weather, setWeather] = useState({
@@ -46,8 +47,8 @@ export default function Weather() {
     }, []);
 
     return (
-        <div>
-            <Card bg="transparent" border="none" style={{ width: "10rem" }} className="float-right text-center ">
+        <Col xs={12} md={3} sm={3} lg={3}>
+            <Card bg="transparent" border="none" style={{ width: "10rem", margin: "auto" }} className=" text-center ">
                 <Card.Body>
                     <Card.Title>
                         {newWeather[1] + ","} {newWeather[3]}
@@ -63,6 +64,6 @@ export default function Weather() {
                     </Card.Text>
                 </Card.Body>
             </Card>
-        </div>
+        </Col >
     );
 }

@@ -9,9 +9,10 @@ FS3 Cohort final project
 - [Database](#database)
 - [Development Setup](#development-setup)
 
-## Description
+## Description.
 
 WIP
+
 
 ## User Flow Diagram
 

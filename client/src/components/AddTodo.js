@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { addToDo } from "../api";
-import { Button, Form, Col, Container } from "react-bootstrap";
+import { Button, Form, Col, Row, Container } from "react-bootstrap";
 
 export default function AddTodo(props) {
   let [task, setTask] = useState("");
@@ -33,54 +33,63 @@ export default function AddTodo(props) {
   }
 
   return (
-    <Container className="addTodo-container">
-      <h3 className="headers ">Add todo task for today:</h3>
-      <Form>
-        <Form.Row>
-          <Form.Group as={Col} md="6" controlId="formGridTask">
-            <Form.Label>Todo task</Form.Label>
-            <Form.Control
-              className="inputAdd"
-              value={task}
-              placeholder="Type todo task"
-              onChange={event => handleAddTask(event)}
-            />
-          </Form.Group>
-          <Form.Group as={Col} md="3" controlId="formGridPriority">
-            <Form.Label>Priority</Form.Label>
-            <Form.Control
-              as="select"
-              className="inputAdd"
-              value={priority}
-              onChange={event => handleAddPriority(event)}
-            >
-              <option>Choose...</option>
-              <option>High</option>
-              <option>Medium</option>
-              <option>Low</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} md="2" controlId="formGridDate">
-            <Form.Label>Due date</Form.Label>
-            <Form.Control
-              className="inputAdd"
-              type="date"
-              value={dueDate}
-              onChange={event => handleAddDate(event)}
-            />
-          </Form.Group>
-          <Form.Group as={Col} md="1" className="button-submit">
-            <Button
-              className="addBtn"
-              variant="info"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              <i class="fas fa-plus" />
-            </Button>
-          </Form.Group>
-        </Form.Row>
-      </Form>
-    </Container>
+    <Container>
+      <Row>
+
+        <Col xs={12} sm={9} md={12}>
+          <h3 className="headers">Add todo task for today:</h3>
+          <Form>
+            <Form.Row >
+              <Form.Group as={Col} md={5} controlId="formGridTask">
+                <Form.Label>Todo task</Form.Label>
+                <Form.Control
+                  value={task}
+                  placeholder="Type todo task"
+
+                  onChange={event => handleAddTask(event)}
+                />
+              </Form.Group>
+              <Form.Group as={Col} md={3} controlId="formGridPriority">
+                <Form.Label>Priority</Form.Label>
+                <Form.Control
+                  as="select"
+
+                  value={priority}
+                  onChange={event => handleAddPriority(event)}
+                >
+                  <option>Choose...</option>
+                  <option>High</option>
+                  <option>Medium</option>
+                  <option>Low</option>
+                </Form.Control>
+              </Form.Group>
+              <Form.Group as={Col} md={3} controlId="formGridDate">
+                <Form.Label>Due date</Form.Label>
+                <Form.Control
+                  type="date"
+                  value={dueDate}
+                  onChange={event => handleAddDate(event)}
+                />
+              </Form.Group>
+              <Form.Group as={Col} md={1} className="button-submit">
+                <Row md={11} style={{ height: "4.5vh", }}>
+
+                </Row>
+                <Row md={11}>
+                  <Button
+                    style={{ marginLeft: "2vh" }}
+                    variant="info"
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    <i className="fas fa-plus" />
+                  </Button>
+                </Row>
+              </Form.Group>
+            </Form.Row>
+          </Form>
+        </Col>
+      </Row>
+    </Container >
   );
 }

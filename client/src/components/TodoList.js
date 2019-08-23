@@ -11,18 +11,15 @@ export default function TodoList() {
 
   function libraryPriority(prio) {
     let library = [["High", 1], ["Medium", 2], ["Low", 3]];
-    let x = [];
-    if (prio == x) {
+
+    if (prio === undefined || prio === 0) {
       return undefined;
     }
     if (typeof prio == "number") {
-      x = library.filter(e => e[1] === prio);
-      return x[0][0];
+      return library.filter(e => e[1] === prio)[0][0];
     } else {
-      x = library.filter(e => e[0] === prio);
-      return x[0][1];
+      return library.filter(e => e[0] === prio)[0][1];
     }
-
   }
 
   function libraryStatus(stat) {
@@ -39,13 +36,11 @@ export default function TodoList() {
     }
   }
 
-
-
   function handleDelete(id) {
     console.log(id);
     deleteToDo(id).then(response => {
       console.log("message", response);
-      showToDo().then(function (response) {
+      showToDo().then(function(response) {
         console.log("message", response);
         setTodoList(response.data.result);
       });
@@ -53,7 +48,7 @@ export default function TodoList() {
   }
 
   function fetchTodos() {
-    showToDo().then(function (response) {
+    showToDo().then(function(response) {
       setTodoList(response.data.result);
     });
   }
@@ -67,8 +62,11 @@ export default function TodoList() {
   }
   return (
     <React.Fragment>
-      <AddTodo updateTodos={updateTodos} libraryStatus={libraryStatus}
-        libraryPriority={libraryPriority} />
+      <AddTodo
+        updateTodos={updateTodos}
+        libraryStatus={libraryStatus}
+        libraryPriority={libraryPriority}
+      />
 
       <Container
         style={{ marginBottom: "10vh", backgroundColor: "#aee1e6" }}
@@ -95,22 +93,28 @@ export default function TodoList() {
           <Col xs />
         </Row>
 
-        {todoList.map(function (todo) {
+        {todoList.map(function(todo) {
           return (
-            <Row key={todo.id} style={{ fontSize: "0.8em" }}>
-              <Col xs={3} md={3} >
+            <Row key={todo.id} style={{ fontSize: "1em" }}>
+              <Col xs={3} md={3}>
                 {todo.task}
                 <hr />
               </Col>
 
-              <Col xs={2} md={2}>{libraryStatus(todo.status)}</Col>
-              <Col xs={3} md={2}>{libraryPriority(todo.priority)}</Col>
-              <Col xs={2} md={3}>{todo.dueDate ? todo.dueDate.split("T")[0] : null}</Col>
+              <Col xs={2} md={2}>
+                {libraryStatus(todo.status)}
+              </Col>
+              <Col xs={3} md={2}>
+                {libraryPriority(todo.priority)}
+              </Col>
+              <Col xs={2} md={3}>
+                {todo.dueDate ? todo.dueDate.split("T")[0] : null}
+              </Col>
               <Col xs={2} md={2} style={{ margin: "0", padding: "0" }}>
                 <Button
                   variant="info"
                   type="submit"
-                  onClick={function () {
+                  onClick={function() {
                     setSelectedTodo(todo);
                     setModalShow(true);
                   }}
@@ -121,7 +125,6 @@ export default function TodoList() {
                 {selectedTodo && (
                   <ModalEdit
                     show={modalShow}
-
                     todo={selectedTodo}
                     onHide={() => setModalShow(false)}
                     updateTodos={updateTodos}
@@ -139,14 +142,11 @@ export default function TodoList() {
                   <i className="far fa-trash-alt" />
                 </Button>
               </Col>
-              <Row >
-
-
-              </Row>
+              <Row />
             </Row>
           );
         })}
       </Container>
-    </React.Fragment >
+    </React.Fragment>
   );
 }

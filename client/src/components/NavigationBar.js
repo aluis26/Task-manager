@@ -2,7 +2,6 @@ import React from "react";
 // import { Link } from 'react-router-dom';
 import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import logout from "./Logout";
-import isLoggedIn from "../helper";
 
 // export function NavigationBarOut() {
 //   return (

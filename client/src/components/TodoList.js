@@ -11,8 +11,7 @@ export default function TodoList() {
 
   function libraryPriority(prio) {
     let library = [["High", 1], ["Medium", 2], ["Low", 3]];
-    let x;
-
+    let x = [];
     if (prio == x) {
       return undefined;
     }
@@ -23,23 +22,24 @@ export default function TodoList() {
       x = library.filter(e => e[0] === prio);
       return x[0][1];
     }
+
   }
 
   function libraryStatus(stat) {
-    let library = [["Undone", 0], ["Done", 1]];
-    let x;
-
-    if (stat == x) {
+    if (stat === undefined) {
       return undefined;
     }
+
+    let library = [["Undone", 0], ["Done", 1]];
+
     if (typeof stat == "number") {
-      x = library.filter(e => e[1] === stat);
-      return x[0][0];
+      return library.filter(e => e[1] === stat)[0][0];
     } else {
-      x = library.filter(e => e[0] === stat);
-      return x[0][1];
+      return library.filter(e => e[0] === stat)[0][1];
     }
   }
+
+
 
   function handleDelete(id) {
     console.log(id);
@@ -67,30 +67,28 @@ export default function TodoList() {
   }
   return (
     <React.Fragment>
-      <AddTodo
-        updateTodos={updateTodos}
-        libraryStatus={libraryStatus}
-        libraryPriority={libraryPriority}
-      />
+      <AddTodo updateTodos={updateTodos} libraryStatus={libraryStatus}
+        libraryPriority={libraryPriority} />
+
       <Container
-        className=" todo-container float-left opac"
-        style={{ width: "65vw" }}
+        style={{ marginBottom: "10vh", backgroundColor: "#aee1e6" }}
+        className=" background-container"
       >
         <h3 className="headers">My todo list:</h3>
         <Row
           className="table-description"
-          style={{ fontSize: "1.1em", fontWeight: "600" }}
+          style={{ fontSize: "0.8em", fontWeight: "600" }}
         >
-          <Col xs={6} md={6}>
+          <Col xs={3} md={3}>
             Task description:
           </Col>
-          <Col xs={1} md={1}>
+          <Col xs={2} md={2}>
             Status:
           </Col>
-          <Col xs={1} md={1}>
+          <Col xs={3} md={2}>
             Priority:
           </Col>
-          <Col xs={2} md={4}>
+          <Col xs={2} md={3}>
             Due date:
           </Col>
           <Col xs />
@@ -99,16 +97,16 @@ export default function TodoList() {
 
         {todoList.map(function (todo) {
           return (
-            <Row>
-              <Col xs={6} md={0}>
+            <Row key={todo.id} style={{ fontSize: "0.8em" }}>
+              <Col xs={3} md={3} >
                 {todo.task}
                 <hr />
               </Col>
 
-              <Col xs>{libraryStatus(todo.status)}</Col>
-              <Col xs>{libraryPriority(todo.priority)}</Col>
-              <Col xs>{todo.dueDate ? todo.dueDate.split("T")[0] : null}</Col>
-              <Col xs>
+              <Col xs={2} md={2}>{libraryStatus(todo.status)}</Col>
+              <Col xs={3} md={2}>{libraryPriority(todo.priority)}</Col>
+              <Col xs={2} md={3}>{todo.dueDate ? todo.dueDate.split("T")[0] : null}</Col>
+              <Col xs={2} md={2} style={{ margin: "0", padding: "0" }}>
                 <Button
                   variant="info"
                   type="submit"
@@ -123,6 +121,7 @@ export default function TodoList() {
                 {selectedTodo && (
                   <ModalEdit
                     show={modalShow}
+
                     todo={selectedTodo}
                     onHide={() => setModalShow(false)}
                     updateTodos={updateTodos}
@@ -130,21 +129,24 @@ export default function TodoList() {
                     libraryPriority={libraryPriority}
                   />
                 )}
-              </Col>
-              <Col xs>
+
                 <Button
                   variant="info"
                   onClick={() => {
                     handleDelete(todo.id);
                   }}
                 >
-                  <i class="far fa-trash-alt" />
+                  <i className="far fa-trash-alt" />
                 </Button>
               </Col>
+              <Row >
+
+
+              </Row>
             </Row>
           );
         })}
       </Container>
-    </React.Fragment>
+    </React.Fragment >
   );
 }

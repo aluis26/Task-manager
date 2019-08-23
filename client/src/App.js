@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
@@ -6,11 +6,8 @@ import Dashboard from "./components/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { NavigationBarIn, NavigationBarOut } from "./components/NavigationBar";
 import PrivateRoute from "./components/PrivateRoute";
 import Logout from "./components/Logout";
-import isLoggedIn from "./helper";
-import backg from "./assets/backg.jpg";
 
 
 function App() {

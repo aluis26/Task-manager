@@ -111,7 +111,9 @@ export default function Signup(props) {
               onChange={event => handleUserPassword(event)}
             />
             {!isPassValid ? (
-              <Alert variant="danger">That's not a valid password</Alert>
+              <Alert variant="danger">
+                Your password needs at least 6 characters
+              </Alert>
             ) : null}
           </Form.Group>
         </Form.Row>
